@@ -1,9 +1,9 @@
-{%- assign product = collections['collection-handle'].products -%}
+{%- assign collections = collections[section.settings.select_collection] -%}
 
-{% if product %}
+{% if collection %}
   <div class="main-swiper swiper">
     <div class="swiper-wrapper">
-      {% for product in collection.products  %}
+      {% for collection in collections.produts %}
         <div class="swiper-slide">
           <a href="{{ product.url }}">
             <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}" height="600" width="600">
