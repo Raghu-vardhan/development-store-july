@@ -1,4 +1,4 @@
-{%- assign product = all_products[section.settings.select_collection] -%}
+{%- assign product = collections['collection-handle'].products -%}
 
 {% if product %}
   <div class="main-swiper swiper">
