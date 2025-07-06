@@ -2155,6 +2155,7 @@ input[type='checkbox'] {
   flex-wrap: wrap;
   align-content: center;
   grid-area: announcements;
+  background-color: green;
 }
 
 .announcement-bar .slider--everywhere {
@@ -3597,5 +3598,5 @@ details-disclosure > details {
 }
 
 h1 ,h2 ,h3 ,h4,h5{
-  color: brown;
+  color: orange;
 }
