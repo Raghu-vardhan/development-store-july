@@ -1,0 +1,92 @@
+<div class="shop-col_main page-width">
+    <div class="main-heading">
+        <div class="left-heading">
+            <h2 class="shop_heading">Shop Collection</h2> 
+            <p>Effortless. Elevated. Everyday.</p>
+        </div>
+
+        <div class="right-heading">
+            <a href="#">
+                <h2 class="shop_heading">View all collection</h2>
+            </a>
+        </div>
+    </div>
+
+    <div class="shop-col_images">
+       {% for block in section.blocks %}
+         <div class="shop_img-continer">
+            <img src="{{ block.settings.block-image | img_url:'medium'  }}" alt="" height="100%" width="100%">
+        </div>
+        <div class="cotent-shop">
+            <p>{{block.settings.block-quote}}</p>
+        </div>
+       {% endfor %}
+    </div>
+</div>
+
+<style>
+.main-heading {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.left-heading{
+    display: flex;
+    gap:1rem;
+}
+.shop-col_main {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+}
+.shop_img-continer {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 20px;
+}
+.shop_img-continer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.shop-col_images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+</style>
+
+{% schema %}
+  {
+    "name": "Shop Collection",
+    "tag": "section",
+    "class": "Shop Collection",
+    "settings": [
+      
+    ],"blocks": [
+      {
+        "name": "Shop Collection Block",
+        "type": "Shop Collection Block",
+        "settings": [
+           {
+            "type": "image_picker",
+            "id": "block-image",
+            "label": "Block Image"
+        },
+        {
+            "type": "text",
+            "id": "block-quote",
+            "label": "Block Quote"
+        }
+        ]   
+      }
+    ],
+    "presets": [
+      {
+        "name": "Shop Collection",
+        "category": "custom"
+      }
+    ]
+  }
+{% endschema %}
