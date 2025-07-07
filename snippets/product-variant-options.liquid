@@ -136,3 +136,58 @@
   {% endif %}
 
 {%- endfor -%}
+
+{%- style -%}
+  /* Container for all swatches */
+.image-swatch-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+/* Each swatch label */
+.swatch-image-label {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+/* Hide the radio button */
+.swatch-image-label input {
+  display: none;
+}
+
+/* Image styling */
+.swatch-image {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.2s ease;
+}
+
+/* Active/checked state */
+.swatch-image-label input:checked + .swatch-image {
+  border-color: #000;
+}
+
+/* Optional: show tooltip on hover */
+.swatch-image-label:hover .swatch-image::after {
+  content: attr(alt);
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+  margin-top: 4px;
+  z-index: 10;
+}
+
+{%- endstyle -%}
