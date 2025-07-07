@@ -52,7 +52,7 @@
 
   {% if picker_type == 'swatch' and option.name == 'Color' %}
     {% assign downcased_value = value | downcase %}
-    {% assign swatch_image = downcased_value | append: '.jpg' %}
+    {% assign swatch_image = downcased_value | append: '.png' %}
     <div class="image-swatch-wrapper">
       <label class="swatch-image-label">
         <input
