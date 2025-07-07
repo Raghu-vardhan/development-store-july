@@ -7,7 +7,6 @@
   - block: {Object} block object.
   - picker_type: {String} type of picker to dispay
 
-
   Usage:
   {% render 'product-variant-options',
     product: product,
@@ -39,32 +38,53 @@
     endif
   -%}
 
-  {%- capture input_id -%}
-    {{ section.id }}-{{ option.position }}-{{ forloop.index0 -}}
-  {%- endcapture -%}
-
-  {%- capture input_name -%}
-    {{ option.name }}-{{ option.position }}
-  {%- endcapture -%}
-
+  {%- capture input_id -%}{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}{%- endcapture -%}
+  {%- capture input_name -%}{{ option.name }}-{{ option.position }}{%- endcapture -%}
   {%- capture input_dataset -%}
     data-product-url="{{ value.product_url }}"
     data-option-value-id="{{ value.id }}"
   {%- endcapture -%}
-
   {%- capture label_unavailable -%}
     <span class="visually-hidden label-unavailable">
       {{- 'products.product.variant_sold_out_or_unavailable' | t -}}
     </span>
   {%- endcapture -%}
 
-  {%- if picker_type == 'swatch' -%}
+  {% if picker_type == 'swatch' and option.name == 'Color' %}
+    <div class="image-swatch-wrapper">
+      {% for img_value in option.values %}
+        {% assign downcased_value = img_value | downcase %}
+        {% assign swatch_image = downcased_value | append: '.png' %}
+
+        <label class="swatch-image-label">
+          <input
+            type="radio"
+            id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+            name="options[{{ option.name | escape }}]"
+            value="{{ img_value | escape }}"
+            form="{{ product_form_id }}"
+            {% if not img_value.available %} disabled{% endif %}
+            data-product-url="{{ img_value.product_url }}"
+            data-option-value-id="{{ img_value.id }}"
+            {% if img_value.selected %}checked{% endif %}
+          >
+          <img
+            src="{{ swatch_image | file_url }}"
+            alt="{{ img_value }}"
+            width="40"
+            height="40"
+            class="swatch-image"
+          >
+        </label>
+      {% endfor %}
+    </div>
+
+  {% elsif picker_type == 'swatch' %}
     {%- capture help_text -%}
       <span class="visually-hidden">{{ value | escape }}</span>
       {{ label_unavailable }}
     {%- endcapture -%}
-    {%
-      render 'swatch-input',
+    {% render 'swatch-input',
       id: input_id,
       name: input_name,
       value: value | escape,
@@ -76,32 +96,28 @@
       help_text: help_text,
       additional_props: input_dataset
     %}
-  {%- elsif picker_type == 'button' -%}
+
+  {% elsif picker_type == 'button' %}
     <input
       type="radio"
       id="{{ input_id }}"
       name="{{ input_name | escape }}"
       value="{{ value | escape }}"
       form="{{ product_form_id }}"
-      {% if value.selected %}
-        checked
-      {% endif %}
-      {% if option_disabled %}
-        class="disabled"
-      {% endif %}
+      {% if value.selected %}checked{% endif %}
+      {% if option_disabled %}class="disabled"{% endif %}
       {{ input_dataset }}
     >
     <label for="{{ input_id }}">
-      {{ value -}}
+      {{ value }}
       {{ label_unavailable }}
     </label>
-  {%- elsif picker_type == 'dropdown' or picker_type == 'swatch_dropdown' -%}
+
+  {% elsif picker_type == 'dropdown' or picker_type == 'swatch_dropdown' %}
     <option
       id="{{ input_id }}"
       value="{{ value | escape }}"
-      {% if value.selected %}
-        selected="selected"
-      {% endif %}
+      {% if value.selected %}selected="selected"{% endif %}
       {% if swatch_value and picker_type == 'swatch_dropdown' %}
         data-option-swatch-value="{{ swatch_value }}"
         {% if swatch_focal_point %}
@@ -110,11 +126,13 @@
       {% endif %}
       {{ input_dataset }}
     >
-      {% if option_disabled -%}
+      {% if option_disabled %}
         {{- 'products.product.value_unavailable' | t: option_value: value -}}
-      {%- else -%}
+      {% else %}
         {{- value -}}
-      {%- endif %}
+      {% endif %}
     </option>
-  {%- endif -%}
+
+  {% endif %}
+
 {%- endfor -%}
