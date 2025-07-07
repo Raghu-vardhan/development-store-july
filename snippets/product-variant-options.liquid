@@ -51,32 +51,29 @@
   {%- endcapture -%}
 
   {% if picker_type == 'swatch' and option.name == 'Color' %}
+    {% assign downcased_value = value | downcase %}
+    {% assign swatch_image = downcased_value | append: '.jpg' %}
     <div class="image-swatch-wrapper">
-      {% for img_value in option.values %}
-        {% assign downcased_value = img_value | downcase %}
-        {% assign swatch_image = downcased_value | append: '.png' %}
+      <label class="swatch-image-label">
+        <input
+          type="radio"
+          id="{{ input_id }}"
+          name="options[{{ option.name | escape }}]"
+          value="{{ value | escape }}"
+          form="{{ product_form_id }}"
+          {% if option_disabled %}disabled{% endif %}
+          {{ input_dataset }}
+          {% if value.selected %}checked{% endif %}
+        >
 
-        <label class="swatch-image-label">
-          <input
-            type="radio"
-            id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
-            name="options[{{ option.name | escape }}]"
-            value="{{ img_value | escape }}"
-            form="{{ product_form_id }}"
-            {% if not img_value.available %} disabled{% endif %}
-            data-product-url="{{ img_value.product_url }}"
-            data-option-value-id="{{ img_value.id }}"
-            {% if img_value.selected %}checked{% endif %}
-          >
-          <img
-            src="{{ swatch_image | file_url }}"
-            alt="{{ img_value }}"
-            width="40"
-            height="40"
-            class="swatch-image"
-          >
-        </label>
-      {% endfor %}
+        <img
+          src="{{ swatch_image | file_url }}"
+          alt="{{ value }}"
+          width="40"
+          height="40"
+          class="swatch-image"
+        >
+      </label>
     </div>
 
   {% elsif picker_type == 'swatch' %}
@@ -136,58 +133,3 @@
   {% endif %}
 
 {%- endfor -%}
-
-{%- style -%}
-  /* Container for all swatches */
-.image-swatch-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin: 10px 0;
-}
-
-/* Each swatch label */
-.swatch-image-label {
-  display: inline-block;
-  position: relative;
-  cursor: pointer;
-}
-
-/* Hide the radio button */
-.swatch-image-label input {
-  display: none;
-}
-
-/* Image styling */
-.swatch-image {
-  width: 40px;
-  height: 40px;
-  object-fit: cover;
-  border: 2px solid #ccc;
-  border-radius: 6px;
-  transition: border-color 0.2s ease;
-}
-
-/* Active/checked state */
-.swatch-image-label input:checked + .swatch-image {
-  border-color: #000;
-}
-
-/* Optional: show tooltip on hover */
-.swatch-image-label:hover .swatch-image::after {
-  content: attr(alt);
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #333;
-  color: white;
-  font-size: 12px;
-  padding: 2px 6px;
-  border-radius: 4px;
-  white-space: nowrap;
-  margin-top: 4px;
-  z-index: 10;
-}
-
-{%- endstyle -%}
