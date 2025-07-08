@@ -1503,9 +1503,7 @@ a.product__text {
     display: block;
   }
 
-  .accordion-button.selected {
-    border: 1px solid #000;
-  }
+
 
   .subscripition-full {
     display: flex;
@@ -1525,10 +1523,6 @@ a.product__text {
     padding: 20px;
     border-radius: 10px;
     font-size: 18px;
-
-  }
-
-  .btn--primary:hover {
 
   }
 
