@@ -1590,6 +1590,11 @@ a.product__text {
   color:#322D2D;
   font-weight: 300;
 }
+.heading-incli{
+  padding: 5px 0;
+  color:#322D2D;
+  font-size: 18px;
+}
 .image-include_flex{
   display: flex;
   align-items: center;
@@ -1602,7 +1607,12 @@ a.product__text {
   display: flex;
   align-items: center;
   gap: 2rem;
+  justify-content: space-around;
 }
 .image-inclde-ryt{
   border: 1px solid #919798;
+  min-width: 70%;
+  max-width: 70%;
+  padding: 10px;
+  border-radius: 10px;
 }
