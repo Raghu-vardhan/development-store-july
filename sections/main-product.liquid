@@ -672,51 +672,72 @@
                 {% assign variant3 = product.variants[2] %}
 
                 <!-- Variant 1 -->
-              <button class="accordion-button" onclick="toggleAccordion(this)">Variant: {{ variant1.title }}</button>
-              <div class="accordion-content">
-                <p>
-                  <strong>Variant:</strong> {{ variant1.title }}<br>
-                  <strong>Price:</strong> {{ variant1.price | money }}<br>
-                  {% if variant1.compare_at_price > variant1.price %}
-                    <strong>Compare at:</strong> {{ variant1.compare_at_price | money }}
-                  {% endif %}
-                </p>
-              </div>
-
+                <button class="accordion-button" onclick="toggleAccordion(this)">
+                  <div class="subscripition-full">
+                      <div class="subcrition-title">
+                        <h3 {{ variant1.title }}></h3>
+                      </div>
+                        <div class="scripiton-price">
+                          <h6>
+                          {{ variant1.price | money }}<br>
+                          </h6>
+                          <h6>
+                            {% if variant1.compare_at_price > variant1.price %}
+                              {{ variant1.compare_at_price | money }}
+                            {% endif %}
+                          </h6>
+                      </div>
+                  </div>
+                </button>
+                  <div class="accordion-content">
+                    {% comment %}  {% endcomment %}
+                  </div>
               <!-- Variant 2 -->
               {% if variant2 %}
-                <button class="accordion-button" onclick="toggleAccordion(this)">Variant: {{ variant2.title }}
-                   <div class="accordion-content">
-                  <div class="subcrition-title">
-                    <h3 {{ variant2.title }}></h3>
+                <button class="accordion-button" onclick="toggleAccordion(this)">
+                  <div class="subscripition-full">
+                      <div class="subcrition-title">
+                        <h3 {{ variant2.title }}></h3>
+                      </div>
+                        <div class="scripiton-price">
+                          <h6>
+                          {{ variant2.price | money }}<br>
+                          </h6>
+                          <h6>
+                            {% if variant2.compare_at_price > variant2.price %}
+                              {{ variant2.compare_at_price | money }}
+                            {% endif %}</h6>
+                      </div>
                   </div>
-                  
-                    <div class="scripiton-price">
-                      <h6>
-                      {{ variant2.price | money }}<br>
-                      </h6>
-                      <h6>
-                        {% if variant2.compare_at_price > variant2.price %}
-                          {{ variant2.compare_at_price | money }}
-                        {% endif %}</h6>
-                    </div>
-                </div>
                 </button>
-               
+                  <div class="accordion-content">
+                    {% comment %}  {% endcomment %}
+                  </div>
               {% endif %}
 
               <!-- Variant 3 -->
               {% if variant3 %}
-                <button class="accordion-button" onclick="toggleAccordion(this)">Variant: {{ variant3.title }}</button>
-                <div class="accordion-content">
-                  <p>
-                   {{ variant3.title }}<br>
-                     {{ variant3.price | money }}<br>
-                    {% if variant3.compare_at_price > variant3.price %}
-                       {{ variant3.compare_at_price | money }}
-                    {% endif %}
-                  </p>
-                </div>
+                <button class="accordion-button" onclick="toggleAccordion(this)">
+                  <div class="subscripition-full">
+                      <div class="subcrition-title">
+                        <h3 {{ variant3.title }}></h3>
+                      </div>
+                        <div class="scripiton-price">
+                          <h6>
+                          {{ variant3.price | money }}<br>
+                          </h6>
+                          <h6>
+                            {% if variant3.compare_at_price > variant3.price %}
+                              {{ variant3.compare_at_price | money }}
+                            {% endif %}
+                          </h6>
+                      </div>
+                  </div>
+                </button>
+                  <div class="accordion-content">
+                    {% comment %}  {% endcomment %}
+                  </div>
+
               {% endif %}
             </div>
           {%- endcase -%}
