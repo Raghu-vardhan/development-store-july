@@ -1492,3 +1492,29 @@ a.product__text {
     border: none;
   }
 }
+
+/* custom css */
+ .accordion-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .accordion-button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    border-radius: 6px;
+    text-align: left;
+  }
+  .accordion-content {
+    display: none;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: #f9f9f9;
+  }
+  .accordion-content.active {
+    display: block;
+  }
