@@ -1542,5 +1542,6 @@ a.product__text {
   background-color: transparent;
   border-color: transparent;
   padding: 0 10px;
-  border-bottom: 1px solid #000;
+  border: 1px solid #B8B8B8;
+
 }
