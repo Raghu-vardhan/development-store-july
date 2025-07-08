@@ -1495,20 +1495,12 @@ a.product__text {
 
 /* custom css */
 
-  .accordion-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  .accordion-content {
+    display: none;
   }
 
-  .accordion-button {
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
-    padding: 1rem;
-    cursor: pointer;
-    width: 100%;
-    text-align: left;
-    border-radius: 6px;
+  .accordion-content.active {
+    display: block;
   }
 
   .accordion-button.selected {
@@ -1520,23 +1512,6 @@ a.product__text {
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-
-  .subcrition-title h3,
-  .scripiton-price h6 {
-    margin: 0;
-  }
-
-  .accordion-content {
-    display: none;
-    padding: 1rem;
-    border: 1px solid #eee;
-    border-radius: 6px;
-    background-color: #fff;
-  }
-
-  .accordion-content.active {
-    display: block;
   }
 
   .btn--primary {
