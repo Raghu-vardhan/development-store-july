@@ -694,7 +694,12 @@
                           </div>
                         </div>
                       </div>
-                    {% endif %}
+
+                      <!-- 👇 This is required -->
+                        <div class="accordion-content {% if variant1.id == product.selected_or_first_available_variant.id %}active{% endif %}">
+                          <p>Simple content for {{ variant1.title }}</p>
+                        </div>
+              {% endif %}
 
 
                 <!-- Variant 2 -->
@@ -719,7 +724,12 @@
                       </div>
                     </div>
                   </div>
-                {% endif %}
+
+                  <!-- 👇 This is required -->
+                  <div class="accordion-content {% if variant1.id == product.selected_or_first_available_variant.id %}active{% endif %}">
+                    <p>Simple content for {{ variant1.title }}</p>
+                  </div>
+                  {% endif %}
 
 
                 <!-- Variant 3 -->
@@ -740,10 +750,15 @@
                       <div class="scripiton-price">
                         <h6>{{ variant3.price | money }}</h6>
                         {% if variant3.compare_at_price > variant3.price %}
-                          <h6><del>{{ varian32.compare_at_price | money }}</del></h6>
+                          <h6><del>{{ varian3.compare_at_price | money }}</del></h6>
                         {% endif %}
                       </div>
                     </div>
+                  </div>
+
+                  <!-- 👇 This is required -->
+                  <div class="accordion-content {% if variant1.id == product.selected_or_first_available_variant.id %}active{% endif %}">
+                    <p>Simple content for {{ variant1.title }}</p>
                   </div>
                 {% endif %}
 
