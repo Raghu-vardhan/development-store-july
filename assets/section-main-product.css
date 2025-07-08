@@ -1644,4 +1644,8 @@ a.product__text {
 }
 .blue-tick{
   padding-left: 10px;
+  list-style: none;
+}
+ul li:before {
+  content: '✓';
 }
