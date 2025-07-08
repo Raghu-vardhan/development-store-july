@@ -24,8 +24,8 @@
         </div>
       {% endfor %}
     </div>
-    <div class="swiper-button-prev"> </div>
-<div class="swiper-button-next"> </div>
+    <div class="swiper-button-prev"></div>
+<div class="swiper-button-next"></div>
 
   </div>
 
@@ -49,7 +49,6 @@
 
 <!-- Style -->
 <style>
-  
   .main-swiper {
     width: 100%;
     max-width: 600px;
@@ -68,25 +67,6 @@
     border: 2px solid #000;
     opacity: 1;
   }
-  .swiper-button-prev,
-.swiper-button-next {
-  color: black; /* You can change to white or any color */
-  width: 30px;
-  height: 30px;
-}
-
-.swiper-button-prev::after,
-.swiper-button-next::after {
-  font-size: 20px;
-}
-
-.main-swiper .swiper-button-prev {
-  left: 0;
-}
-.main-swiper .swiper-button-next {
-  right: 0;
-}
-
 </style>
 
 <!-- Swiper CDN -->
@@ -98,16 +78,6 @@
 
 <!-- Init Swiper -->
 <script>
-  mainSwiper = new Swiper(".main-swiper", {
-  loop: false,
-  slidesPerView: 1,
-  spaceBetween: 10,
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev'
-  },
-});
-
   let mainSwiper;
 
   document.addEventListener("DOMContentLoaded", function () {
