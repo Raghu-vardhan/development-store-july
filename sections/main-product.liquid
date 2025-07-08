@@ -666,6 +666,7 @@
 
                 {% comment %} custom variant logic {% endcomment %}
                 {%- when 'subscripiton' -%}
+                  <h4 class="recommened-subscription">Recommened</h4>
                   <div class="accordion-wrapper">
                   {% assign variant1 = product.variants[0] %}
                   {% assign variant2 = product.variants[1] %}
@@ -676,8 +677,9 @@
                     {% if variant1 %}
                       
                       <div class="accordion-button {% if variant1.id == product.selected_or_first_available_variant.id %}selected{% endif %}" onclick="selectVariant(event, '{{ variant1.id }}', 0)">
+                        
                         <div class="subscripition-full">
-                          <h4 class="recommened-subscription">Recommened</h4>
+                          
                           <div class="subcrition-title" style="display: flex; align-items: center; gap: 8px;">
                             <input 
                               type="radio" 

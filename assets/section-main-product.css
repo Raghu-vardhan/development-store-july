@@ -1566,4 +1566,6 @@ a.product__text {
   background-color: #A2845E;
   color: #B8B8B8;
   border: 1px solid #B8B8B8;
+  width: 100%;
+  padding: 10px;
 }
