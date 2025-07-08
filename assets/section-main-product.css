@@ -1508,6 +1508,10 @@ a.product__text {
   }
   .accordion-content.active {
     display: block;
+    border: 1px solid #000;
+    padding: 2rem;
+    border-radius: 10px;
+
   }
   .subscripition-full {
     display: flex;
