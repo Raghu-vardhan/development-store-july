@@ -2349,8 +2349,11 @@
 
 
 <script>
-   function selectVariant(event, variantId, index) {
+   <script>
+  function selectVariant(event, variantId, index) {
     event.preventDefault();
+
+    // Update the hidden input with selected variant ID
     document.getElementById('selected-variant-id').value = variantId;
 
     const buttons = document.querySelectorAll('.accordion-button');
@@ -2361,4 +2364,6 @@
       contents[i].classList.toggle('active', i === index);
     });
   }
+</script>
+
 </script>
