@@ -1515,21 +1515,21 @@ a.product__text {
 
   .btn--primary {
     margin-top: 20px;
-    padding: 10px 20px;
-    background: #000000;
-    color: #fff#FFFFFF;
+    background: #000;
+    color: #fff;
     border: none;
     font-weight: 700;
-    border-radius: 6px;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     width: 100%;
-    padding: 0 20px;
+    padding: 20px;
     border-radius: 10px;
+    font-size: 18px;
+
   }
 
   .btn--primary:hover {
-    background-color: #155ab6;
+
   }
 
 .subscription-main{
