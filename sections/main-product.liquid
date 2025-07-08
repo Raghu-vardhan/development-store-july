@@ -2379,13 +2379,15 @@
 
 
 <script>
+<script>
   function selectVariant(event, variantId, index) {
     event.preventDefault();
 
     // Update hidden input for Add to Cart
-    document.getElementById('selected-variant-id').value = variantId;
+    const hiddenInput = document.getElementById('selected-variant-id');
+    if (hiddenInput) hiddenInput.value = variantId;
 
-    // Toggle selected class for accordion buttons
+    // Toggle 'selected' on accordion buttons
     const buttons = document.querySelectorAll('.accordion-button');
     const contents = document.querySelectorAll('.accordion-content');
     const radios = document.querySelectorAll('input[name="selected_variant"]');
@@ -2398,12 +2400,20 @@
       content.classList.toggle('active', i === index);
     });
 
-    // Check the correct radio input
-    radios.forEach(radio => {
+    // Check correct radio button
+    radios.forEach((radio) => {
       radio.checked = (radio.value === variantId);
     });
   }
+
+  // Automatically trigger the first accordion on page load
+  document.addEventListener("DOMContentLoaded", function() {
+    const firstButton = document.querySelector('.accordion-button');
+    if (firstButton) firstButton.click();
+  });
 </script>
+
+
 
 
 
