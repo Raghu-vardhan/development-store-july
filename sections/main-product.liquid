@@ -719,7 +719,6 @@
                               </div>
                             </div>
                           </div>
-                       
                         </div>
                       </div>
                     {% endif %}
@@ -746,7 +745,27 @@
                         </div>
                       </div>
                       <div class="accordion-content {% if variant2.id == product.selected_or_first_available_variant.id %}active{% endif %}">
-                        <p>Simple content for {{ variant2.title }}</p>
+                         <div class="include0">
+                          <h4 class="heading-incli"> What’s Included:</h4>
+                          <div class="image-include_flex">
+                            <div class="image-include-left">
+                              <h5>Every 30 Days</h5>
+                                <div class="img-30days">
+                                <img src="{{ block.settings.variant_img | img_url:'medium' }}" alt="image" width="55" height="100%" >
+                              </div>
+                            </div>
+
+                            <div class="image-inclde-ryt">
+                              <div class="one-time">
+                                <h5>One Time (Free)</h5>
+                              </div>
+                              <div class="img_include-3">
+                                <img src="{{ block.settings.variant_imgg1 | img_url:'medium' }}" alt="image" width="55" height="100%" >
+                                <img src="{{ block.settings.variant_imgg2 | img_url:'medium' }}" alt="image" width="55" height="100%" >
+                                <img src="{{ block.settings.variant_imgg3 | img_url:'medium' }}" alt="image" width="55" height="100%" >
+                              </div>
+                            </div>
+                          </div>
                       </div>
                     {% endif %}
 
