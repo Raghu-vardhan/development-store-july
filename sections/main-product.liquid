@@ -666,89 +666,84 @@
 
                 {% comment %} custom variant logic {% endcomment %}
                 {%- when 'subscripiton' -%}
-                <div class="accordion-wrapper">
-                {% assign variant1 = product.variants[0] %}
-                {% assign variant2 = product.variants[1] %}
-                {% assign variant3 = product.variants[2] %}
+                  <div class="accordion-wrapper">
+              {% assign variant1 = product.variants[0] %}
+              {% assign variant2 = product.variants[1] %}
+              {% assign variant3 = product.variants[2] %}
 
-                <!-- Variant 1 -->
-                <button class="accordion-button" onclick="toggleAccordion(this)">
-                  <div class="subscripition-full">
-                      <div class="subcrition-title">
-                        <h3> {{ variant1.title }}</h3>
-                      </div>
-                        <div class="scripiton-price">
-                          <h6>
-                          {{ variant1.price | money }}<br>
-                          </h6>
-                          <h6>
-                            {% if variant1.compare_at_price > variant1.price %}
-                              {{ variant1.compare_at_price | money }}
-                            {% endif %}
-                          </h6>
-                      </div>
+              <!-- Hidden Add to Cart Form -->
+              <form method="post" action="/cart/add">
+                <input type="hidden" name="id" id="selected-variant-id" value="{{ variant1.id }}">
+                <button type="submit" class="btn btn--primary">Add to Cart</button>
+              </form>
+
+              <!-- Variant 1 Accordion -->
+              <button class="accordion-button selected" onclick="selectVariant(event, '{{ variant1.id }}', 0)">
+                <div class="subscripition-full">
+                  <div class="subcrition-title">
+                    <h3>{{ variant1.title }}</h3>
                   </div>
-                </button>
-                  <div class="accordion-content">
-                    {% comment %}  {% endcomment %}
+                  <div class="scripiton-price">
+                    <h6>{{ variant1.price | money }}</h6>
+                    {% if variant1.compare_at_price > variant1.price %}
+                      <h6 class="compare-price">{{ variant1.compare_at_price | money }}</h6>
+                    {% endif %}
                   </div>
-              <!-- Variant 2 -->
+                </div>
+              </button>
+              <div class="accordion-content active">
+                <p>{{ variant1.title }} subscription info goes here.</p>
+              </div>
+
+              <!-- Variant 2 Accordion -->
               {% if variant2 %}
-                <button class="accordion-button" onclick="toggleAccordion(this)">
+                <button class="accordion-button" onclick="selectVariant(event, '{{ variant2.id }}', 1)">
                   <div class="subscripition-full">
-                      <div class="subcrition-title">
-                        <h3> {{ variant2.title }}</h3>
-                      </div>
-                        <div class="scripiton-price">
-                          <h6>
-                          {{ variant2.price | money }}<br>
-                          </h6>
-                          <h6>
-                            {% if variant2.compare_at_price > variant2.price %}
-                              {{ variant2.compare_at_price | money }}
-                            {% endif %}</h6>
-                      </div>
+                    <div class="subcrition-title">
+                      <h3>{{ variant2.title }}</h3>
+                    </div>
+                    <div class="scripiton-price">
+                      <h6>{{ variant2.price | money }}</h6>
+                      {% if variant2.compare_at_price > variant2.price %}
+                        <h6 class="compare-price">{{ variant2.compare_at_price | money }}</h6>
+                      {% endif %}
+                    </div>
                   </div>
                 </button>
-                  <div class="accordion-content">
-                    {% comment %}  {% endcomment %}
-                  </div>
+                <div class="accordion-content">
+                  <p>{{ variant2.title }} subscription info goes here.</p>
+                </div>
               {% endif %}
 
-              <!-- Variant 3 -->
+              <!-- Variant 3 Accordion -->
               {% if variant3 %}
-                <button class="accordion-button" onclick="toggleAccordion(this)">
+                <button class="accordion-button" onclick="selectVariant(event, '{{ variant3.id }}', 2)">
                   <div class="subscripition-full">
-                      <div class="subcrition-title">
-                        <h3> {{ variant3.title }}</h3>
-                      </div>
-                        <div class="scripiton-price">
-                          <h6>
-                          {{ variant3.price | money }}<br>
-                          </h6>
-                          <h6>
-                            {% if variant3.compare_at_price > variant3.price %}
-                              {{ variant3.compare_at_price | money }}
-                            {% endif %}
-                          </h6>
-                      </div>
+                    <div class="subcrition-title">
+                      <h3>{{ variant3.title }}</h3>
+                    </div>
+                    <div class="scripiton-price">
+                      <h6>{{ variant3.price | money }}</h6>
+                      {% if variant3.compare_at_price > variant3.price %}
+                        <h6 class="compare-price">{{ variant3.compare_at_price | money }}</h6>
+                      {% endif %}
+                    </div>
                   </div>
                 </button>
-                  <div class="accordion-content">
-                    {% comment %}  {% endcomment %}
-                  </div>
-
+                <div class="accordion-content">
+                  <p>{{ variant3.title }} subscription info goes here.</p>
+                </div>
               {% endif %}
             </div>
-          {%- endcase -%}
-        {%- endfor -%}
-        <a href="{{ product.url }}" class="link product__view-details animate-arrow">
-          {{ 'products.product.view_full_details' | t }}
-          {{- 'icon-arrow.svg' | inline_asset_content -}}
-        </a>
-      </section>
-    </div>
-  </div>
+      {%- endcase -%}
+    {%- endfor -%}
+    <a href="{{ product.url }}" class="link product__view-details animate-arrow">
+      {{ 'products.product.view_full_details' | t }}
+      {{- 'icon-arrow.svg' | inline_asset_content -}}
+    </a>
+  </section>
+</div>
+</div>
 
     {% render 'product-media-modal', variant_images: variant_images %}
 
