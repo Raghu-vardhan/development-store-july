@@ -1535,7 +1535,7 @@ a.product__text {
   gap: 1rem;
 }
 .scripiton-price{
-
   display: flex;
   align-items: center;
+  gap: 1rem;
 }
