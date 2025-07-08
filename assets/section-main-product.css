@@ -1645,7 +1645,7 @@ a.product__text {
 
 ul li:before {
   content: '✓';
-  padding-right: 5px;
+  padding: 0 10px;
 }
 .blue-tick{
   padding-left: 10px;
