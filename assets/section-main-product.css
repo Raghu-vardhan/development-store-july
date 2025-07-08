@@ -1659,7 +1659,7 @@ a.product__text {
 }
 .varient-select_main{
   display: flex;
-  gap: 8em;
+  gap: 3em;
 }
 .varient_sel_img{
   width: 20%;
