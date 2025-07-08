@@ -1552,8 +1552,9 @@ a.product__text {
   font-size: 18px;
     color: #322D2D;
     font-weight: 600;
+    margin: 0;
 }
-.scripiton-price del{
+.scripiton-price h4 del{
     display: flex;
     align-items: center;
     gap: 3rem; 
