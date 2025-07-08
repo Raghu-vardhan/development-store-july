@@ -1593,9 +1593,16 @@ a.product__text {
 .image-include_flex{
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+.img-30days{
+  padding: 20px;
 }
 .img_include-3{
   display: flex;
   align-items: center;
   gap: 2rem;
+}
+.image-inclde-ryt{
+  border: 1px solid #919798;
 }
