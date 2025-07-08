@@ -1594,6 +1594,7 @@ a.product__text {
   padding: 5px 0;
   color:#322D2D;
   font-size: 18px;
+  padding: 1.6rem 0;
 }
 .image-include_flex{
   display: flex;
