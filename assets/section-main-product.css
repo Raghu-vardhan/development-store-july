@@ -1510,7 +1510,8 @@ a.product__text {
     display: flex;
     justify-content: space-between;
     align-items: center;
-        padding: 15px 0;
+    padding: 8px 0;
+
   }
 
   .btn--primary {
@@ -1543,7 +1544,7 @@ a.product__text {
   border-color: transparent;
   padding: 0 10px;
   border: 1px solid #B8B8B8;
-
+  border-radius: 10px;
 }
 
   .accordion-content {
@@ -1574,10 +1575,12 @@ a.product__text {
     font-size: 24px;
     font-weight: 600;
     margin: 0;
+        border-radius: 10px;
+    line-height: 23px;
 }
 .accordion-button.selected{
   border: 0;
   border-bottom: 1px solid #919798;
-  margin: auto;
-  width: 90%;
+  border-radius: 0;
+
 }
