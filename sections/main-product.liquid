@@ -698,43 +698,35 @@
                       </div>
                       <div class="accordion-content {% if variant1.id == product.selected_or_first_available_variant.id %}active{% endif %}">
                         <p>Simple content for {{ variant1.title }}</p>
-                          <div class="variant-select_mains">
-                        <div class="variant-select_main">
-                                <div class="variant_sel_img" onclick="selectVariantByIndex(0, 'flavor-chocolate')">
-                                  <div class="var_btn">
-                                    <input type="radio" name="flavor" value="Chocolate" id="flavor-chocolate">
-                                    <p>Chocolate</p>
-                                  </div>
-                                  <div class="variant-sel_1">
-                                    <img src="{{ block.settings.variant_imgg1 | img_url: 'medium' }}" alt="Chocolate" width="55" height="100%">
-                                  </div>
+                          <div class="varient-select_main">
+                            <div class="varient_sel_img" onclick="mainSwiper.slideTo(0)">
+                              <div class="var_btn">
+                                <input type="radio">
+                                <p>Chocolate</p>
+                              </div>
+                              <div class="variant-sel_1">
+                                <img src="{{ block.settings.variant_imgg1 | img_url:'medium' }}" alt="image" width="55" height="100%" >
+                              </div>
+                            </div>
+                              <div class="varient_sel_img" onclick="mainSwiper.slideTo(1)">
+                                <div class="var_btn">
+                                  <input type="radio">
+                                  <p>Vanilla</p>  
                                 </div>
-
-                                <!-- Orange -->
-                                <div class="variant_sel_img" onclick="selectVariantByIndex(1, 'flavor-orange')">
-                                  <div class="var_btn">
-                                    <input type="radio" name="flavor" value="Orange" id="flavor-orange">
-                                    <p>Orange</p>
-                                  </div>
-                                  <div class="variant-sel_1">
-                                    <img src="{{ block.settings.variant_imgg3 | img_url: 'medium' }}" alt="Orange" width="55" height="100%">
-                                  </div>
+                                <div class="variant-sel_1">
+                                  <img src="{{ block.settings.variant_img | img_url:'medium' }}" alt="image" width="55" height="100%" >
                                 </div>
-
-                                <!-- Vanilla -->
-                                <div class="variant_sel_img" onclick="selectVariantByIndex(2, 'flavor-vanilla')">
-                                  <div class="var_btn">
-                                    <input type="radio" name="flavor" value="Vanilla" id="flavor-vanilla">
-                                    <p>Vanilla</p>
-                                  </div>
-                                  <div class="variant-sel_1">
-                                    <img src="{{ block.settings.variant_img | img_url: 'medium' }}" alt="Vanilla" width="55" height="100%">
-                                  </div>
-                                </div>
+                            </div>
+                              <div class="varient_sel_img" onclick="mainSwiper.slideTo(2)">
+                                <div class="var_btn">
+                                <input type="radio">
+                                <p>Orange</p>
+                              </div>
+                              <div class="variant-sel_1">
+                                <img src="{{ block.settings.variant_imgg3 | img_url:'medium' }}" alt="image" width="55" height="100%" >
+                              </div>
+                            </div>
                           </div>
-
-
-
                         {% comment %}  {% endcomment %}
                         <div class="include0">
                           <h4 class="heading-incli"> What’s Included:</h4>
