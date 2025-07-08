@@ -1577,5 +1577,7 @@ a.product__text {
 }
 .accordion-button.selected{
   border: 0;
-  border-bottom: 1px solid #B8B8B8;
+  border-bottom: 1px solid #919798;
+  margin: auto;
+  width: 80%;
 }
