@@ -1561,3 +1561,9 @@ a.product__text {
     align-items: center;
     gap: 3rem; 
 }
+.recommened-subscription{
+  text-align: center;
+  background-color: #A2845E;
+  color: #B8B8B8;
+  border: 1px solid #B8B8B8;
+}
