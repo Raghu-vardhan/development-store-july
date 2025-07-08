@@ -1642,12 +1642,13 @@ a.product__text {
   font-weight: 400;
   color: #322D2D;
 }
+
+ul li:before {
+  content: '✓';
+}
 .blue-tick{
   padding-left: 10px;
   list-style: none;
   padding: 20px 0;
   margin-bottom: 2rem;
-}
-ul li:before {
-  content: '✓';
 }
