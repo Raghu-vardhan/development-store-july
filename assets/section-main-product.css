@@ -1575,6 +1575,7 @@ a.product__text {
     font-weight: 600;
     margin: 0;
 }
-.accordion-button .selected{
+.accordion-button.selected{
   border: 0;
+  border-bottom: 1px solid #B8B8B8;
 }
