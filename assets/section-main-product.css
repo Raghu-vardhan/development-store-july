@@ -1,5 +1,6 @@
 product-info {
   display: block;
+  margin: 0;
 }
 
 .product {
@@ -1500,6 +1501,7 @@ a.product__text {
   }
   .accordion-wrapper{
     cursor: pointer;
+    margin: 0;
   }
   .accordion-content.active {
     display: block;
@@ -1571,4 +1573,5 @@ a.product__text {
     padding: 10px;
     font-size: 24px;
     font-weight: 600;
+    margin: 0;
 }
