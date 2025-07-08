@@ -1518,3 +1518,7 @@ a.product__text {
   .accordion-content.active {
     display: block;
   }
+  .subscripition-full{
+    display: flex;
+    justify-content: space-between;;
+  }

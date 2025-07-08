@@ -685,16 +685,24 @@
 
               <!-- Variant 2 -->
               {% if variant2 %}
-                <button class="accordion-button" onclick="toggleAccordion(this)">Variant: {{ variant2.title }}</button>
-                <div class="accordion-content">
-                  <p>
-                    <strong>Variant:</strong> {{ variant2.title }}<br>
-                    <strong>Price:</strong> {{ variant2.price | money }}<br>
-                    {% if variant2.compare_at_price > variant2.price %}
-                      <strong>Compare at:</strong> {{ variant2.compare_at_price | money }}
-                    {% endif %}
-                  </p>
+                <button class="accordion-button" onclick="toggleAccordion(this)">Variant: {{ variant2.title }}
+                   <div class="accordion-content">
+                  <div class="subcrition-title">
+                    <h3 {{ variant2.title }}></h3>
+                  </div>
+                  
+                    <div class="scripiton-price">
+                      <h6>
+                      {{ variant2.price | money }}<br>
+                      </h6>
+                      <h6>
+                        {% if variant2.compare_at_price > variant2.price %}
+                          {{ variant2.compare_at_price | money }}
+                        {% endif %}</h6>
+                    </div>
                 </div>
+                </button>
+               
               {% endif %}
 
               <!-- Variant 3 -->
@@ -702,10 +710,10 @@
                 <button class="accordion-button" onclick="toggleAccordion(this)">Variant: {{ variant3.title }}</button>
                 <div class="accordion-content">
                   <p>
-                    <strong>Variant:</strong> {{ variant3.title }}<br>
-                    <strong>Price:</strong> {{ variant3.price | money }}<br>
+                   {{ variant3.title }}<br>
+                     {{ variant3.price | money }}<br>
                     {% if variant3.compare_at_price > variant3.price %}
-                      <strong>Compare at:</strong> {{ variant3.compare_at_price | money }}
+                       {{ variant3.compare_at_price | money }}
                     {% endif %}
                   </p>
                 </div>
