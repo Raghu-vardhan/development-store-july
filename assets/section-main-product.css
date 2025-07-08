@@ -1665,6 +1665,7 @@ a.product__text {
   width: 30%;
   background: #F9F9F9;
   text-align: center;
+  border-radius: 10px;
 }
 .var_btn{
   padding-left:10px;
