@@ -698,35 +698,42 @@
                       </div>
                       <div class="accordion-content {% if variant1.id == product.selected_or_first_available_variant.id %}active{% endif %}">
                         <p>Simple content for {{ variant1.title }}</p>
-                          <div class="varient-select_main">
-                            <div class="varient_sel_img" onclick="mainSwiper.slideTo(0)">
-                              <div class="var_btn">
-                                <input type="radio">
-                                <p>Chocolate</p>
-                              </div>
-                              <div class="variant-sel_1">
-                                <img src="{{ block.settings.variant_imgg1 | img_url:'medium' }}" alt="image" width="55" height="100%" >
-                              </div>
+                          <!-- VARIANT SWATCHES -->
+                        <div class="varient-select_main">
+
+                          <!-- Chocolate -->
+                          <div class="varient_sel_img" onclick="mainSwiper.slideTo(0); selectVariant('chocolate')">
+                            <div class="var_btn">
+                              <input type="radio" name="flavor" id="chocolate-radio">
+                              <p>Chocolate</p>
                             </div>
-                              <div class="varient_sel_img" onclick="mainSwiper.slideTo(1)">
-                                <div class="var_btn">
-                                  <input type="radio">
-                                  <p>Vanilla</p>  
-                                </div>
-                                <div class="variant-sel_1">
-                                  <img src="{{ block.settings.variant_img | img_url:'medium' }}" alt="image" width="55" height="100%" >
-                                </div>
-                            </div>
-                              <div class="varient_sel_img" onclick="mainSwiper.slideTo(2)">
-                                <div class="var_btn">
-                                <input type="radio">
-                                <p>Orange</p>
-                              </div>
-                              <div class="variant-sel_1">
-                                <img src="{{ block.settings.variant_imgg3 | img_url:'medium' }}" alt="image" width="55" height="100%" >
-                              </div>
+                            <div class="variant-sel_1">
+                              <img src="{{ block.settings.variant_imgg1 | img_url: 'medium' }}" alt="Chocolate" width="55" height="100%">
                             </div>
                           </div>
+
+                          <!-- Vanilla -->
+                          <div class="varient_sel_img" onclick="mainSwiper.slideTo(1); selectVariant('vanilla')">
+                            <div class="var_btn">
+                              <input type="radio" name="flavor" id="vanilla-radio">
+                              <p>Vanilla</p>
+                            </div>
+                            <div class="variant-sel_1">
+                              <img src="{{ block.settings.variant_img | img_url: 'medium' }}" alt="Vanilla" width="55" height="100%">
+                            </div>
+                          </div>
+
+                          <!-- Orange -->
+                          <div class="varient_sel_img" onclick="mainSwiper.slideTo(2); selectVariant('orange')">
+                            <div class="var_btn">
+                              <input type="radio" name="flavor" id="orange-radio">
+                              <p>Orange</p>
+                            </div>
+                            <div class="variant-sel_1">
+                              <img src="{{ block.settings.variant_imgg3 | img_url: 'medium' }}" alt="Orange" width="55" height="100%">
+                            </div>
+                          </div>
+                        </div>
                         {% comment %}  {% endcomment %}
                         <div class="include0">
                           <h4 class="heading-incli"> What’s Included:</h4>
