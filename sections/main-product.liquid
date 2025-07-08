@@ -2530,4 +2530,19 @@
     const selectedBtn = document.querySelector('.accordion-button.selected');
     if (selectedBtn) selectedBtn.click();
   });
+
+   // Map flavor key to variant ID (replace with real IDs)
+  const flavorVariants = {
+    chocolate: {{ product.variants[0].id }},
+    vanilla: {{ product.variants[1].id }},
+    orange: {{ product.variants[2].id }}
+  };
+
+  function selectVariant(flavorKey) {
+    // Set hidden input value
+    document.getElementById('selected-variant-id').value = flavorVariants[flavorKey];
+
+    // Check the corresponding radio button
+    document.getElementById(`${flavorKey}-radio`).checked = true;
+  }
 </script>
