@@ -1504,8 +1504,7 @@ a.product__text {
   }
 
   .accordion-button.selected {
-    background-color: #e6f0ff;
-    border-color: #1a73e8;
+    border: 1px solid #000;
   }
 
   .subscripition-full {
