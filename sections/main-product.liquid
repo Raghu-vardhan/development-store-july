@@ -699,18 +699,18 @@
                       <div class="accordion-content {% if variant1.id == product.selected_or_first_available_variant.id %}active{% endif %}">
                         <p>Simple content for {{ variant1.title }}</p>
                           <div class="varient-select_main">
-                            <div class="varient_sel_img">
+                            <div class="varient_sel_img" onclick="mainSwiper.slideTo(0)">
                               <div class="var_btn">
-                                <input type="radio" onclick="mainSwiper.slideTo(0)">
+                                <input type="radio">
                                 <p>Chocolate</p>
                               </div>
                               <div class="variant-sel_1">
                                 <img src="{{ block.settings.variant_imgg1 | img_url:'medium' }}" alt="image" width="55" height="100%" >
                               </div>
                             </div>
-                              <div class="varient_sel_img">
+                              <div class="varient_sel_img" onclick="mainSwiper.slideTo(1)">
                                 <div class="var_btn">
-                                  <input type="radio" onclick="mainSwiper.slideTo(1)">
+                                  <input type="radio">
                                   <p>Vanilla</p>  
                                 </div>
                                 <div class="variant-sel_1">
