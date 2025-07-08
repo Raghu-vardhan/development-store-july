@@ -24,9 +24,10 @@
         </div>
       {% endfor %}
     </div>
-    <div class="swiper-button-prev"></div>
-<div class="swiper-button-next"></div>
 
+    <!-- ✅ Navigation Arrows -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
   </div>
 
   <!-- Thumbnails -->
@@ -43,38 +44,21 @@
       />
     {% endfor %}
   </div>
-
-
 </div>
 
-<!-- Style -->
-<style>
-  .main-swiper {
-    width: 100%;
-    max-width: 600px;
-    height: 600px;
-    overflow: hidden;
-  }
-  .swiper-slide {
-    display: flex;
-    justify-content: center;
-  }
-  .thumbnail-images img {
-    border-radius: 4px;
-    opacity: 0.6;
-  }
-  .thumbnail-images img.active-thumb {
-    border: 2px solid #000;
-    opacity: 1;
-  }
-</style>
-
-<!-- Swiper CDN -->
+<!-- Swiper Styles -->
 <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
 />
+
+<!-- Swiper Script -->
 <script defer src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+<!-- Product JSON for JS -->
+<script>
+  window.productData = {{ product | json }};
+</script>
 
 <!-- Init Swiper -->
 <script>
@@ -85,9 +69,13 @@
       loop: false,
       slidesPerView: 1,
       spaceBetween: 10,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      }
     });
 
-    // Handle variant media scrolling
+    // Variant switch scroll
     const form = document.querySelector("form[action^='/cart']");
     if (form && window.productData) {
       form.addEventListener("change", function () {
@@ -95,9 +83,7 @@
         const variant = window.productData.variants.find(v => v.id == variantId);
         const mediaId = variant?.featured_media?.id;
         if (mediaId) {
-          const targetSlide = document.querySelector(
-            `.swiper-slide[data-media-id='${mediaId}']`
-          );
+          const targetSlide = document.querySelector(`.swiper-slide[data-media-id='${mediaId}']`);
           if (targetSlide) {
             const index = [...targetSlide.parentNode.children].indexOf(targetSlide);
             mainSwiper.slideTo(index);
@@ -106,7 +92,7 @@
       });
     }
 
-    // Highlight active thumbnail
+    // Active thumbnail highlight
     mainSwiper.on("slideChange", () => {
       const activeId = document.querySelectorAll(".swiper-slide")[mainSwiper.activeIndex].dataset.mediaId;
       document.querySelectorAll(".thumbnail-images img").forEach(img => {
@@ -116,16 +102,48 @@
   });
 </script>
 
-<!-- Pass Product Data -->
-<script>
-  window.productData = {{ product | json }};
-</script>
-
+<!-- Styles -->
 <style>
-   .main-swiper{
-    height:100%;
+  .main-swiper {
+    width: 100%;
+    max-width: 600px;
+    height: 600px;
+    overflow: hidden;
+    position: relative;
   }
-  .thumbnail-images img{
+
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+  }
+
+  .thumbnail-images {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+  }
+
+  .thumbnail-images img {
+    border-radius: 4px;
+    opacity: 0.6;
+    transition: 0.2s ease;
+  }
+
+  .thumbnail-images img.active-thumb {
+    border: 2px solid #000;
     opacity: 1;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: black;
+    width: 44px;
+    height: 44px;
+  }
+
+  .swiper-button-next::after,
+  .swiper-button-prev::after {
+    font-size: 20px;
   }
 </style>
