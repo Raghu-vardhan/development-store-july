@@ -666,17 +666,13 @@
 
                 {% comment %} custom variant logic {% endcomment %}
                 {%- when 'subscripiton' -%}
-                     <div class="accordion-wrapper">
+                <div class="accordion-wrapper">
                 {% assign variant1 = product.variants[0] %}
                 {% assign variant2 = product.variants[1] %}
                 {% assign variant3 = product.variants[2] %}
 
-                <!-- Hidden Add to Cart form -->
-                <form method="post" action="/cart/add">
-                  <input type="hidden" name="id" id="selected-variant-id" value="{{ variant1.id }}">
-                  <button type="submit" class="btn btn--primary">Add to Cart</button>
-                </form>
-
+                  <div class="subscription-main">
+                      
                 <!-- Variant 1 -->
                 <button class="accordion-button selected" onclick="selectVariant(event, '{{ variant1.id }}', 0)">
                   <div class="subscripition-full">
@@ -728,8 +724,18 @@
                     <p>Simple content for {{ variant3.title }}</p>
                   </div>
                 {% endif %}
-              </div>
+                  </div>
 
+
+                </div>
+
+                <div class="add-cart">
+                    <!-- Hidden Add to Cart form -->
+                <form method="post" action="/cart/add">
+                  <input type="hidden" name="id" id="selected-variant-id" value="{{ variant1.id }}">
+                  <button type="submit" class="btn btn--primary">Add to Cart</button>
+                </form>
+                </div>
                 {% comment %}  {% endcomment %}
                 {%- endcase -%}
               {%- endfor -%}
@@ -2365,4 +2371,5 @@
     });
   }
 </script>
+
 
