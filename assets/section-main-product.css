@@ -1647,7 +1647,7 @@ a.product__text {
   color: #322D2D;
 }
 
-ul li:before {
+.blue-tick li:before {
   content: '✓';
   padding: 0 10px;
 }
