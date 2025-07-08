@@ -2379,30 +2379,31 @@
 
 
 <script>
- <script>
   function selectVariant(event, variantId, index) {
     event.preventDefault();
 
-    // Set the hidden input value (for Add to Cart form)
+    // Update hidden input for Add to Cart
     document.getElementById('selected-variant-id').value = variantId;
 
-    // Handle accordion active state
+    // Toggle selected class for accordion buttons
     const buttons = document.querySelectorAll('.accordion-button');
     const contents = document.querySelectorAll('.accordion-content');
+    const radios = document.querySelectorAll('input[name="selected_variant"]');
 
     buttons.forEach((btn, i) => {
       btn.classList.toggle('selected', i === index);
-      contents[i].classList.toggle('active', i === index);
     });
 
-    // Set the corresponding radio button checked
-    const radios = document.querySelectorAll('input[name="selected_variant"]');
+    contents.forEach((content, i) => {
+      content.classList.toggle('active', i === index);
+    });
+
+    // Check the correct radio input
     radios.forEach(radio => {
       radio.checked = (radio.value === variantId);
     });
   }
 </script>
 
-</script>
 
 
