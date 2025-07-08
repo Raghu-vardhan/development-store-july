@@ -1600,7 +1600,7 @@ a.product__text {
 .image-include_flex{
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 3rem;
 }
 .img-30days{
   text-align: center;
@@ -1614,8 +1614,8 @@ a.product__text {
 }
 .image-inclde-ryt{
   border: 1px solid #919798;
-  min-width: 65%;
-  max-width: 65%;
+     min-width: 55%;
+    max-width: 55%;
   padding: 10px;
   border-radius: 10px;
 }
