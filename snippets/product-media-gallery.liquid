@@ -1,10 +1,12 @@
-<div id="ProductGalleryWrapper">
-
+<div class="main-section page-width">
   <!-- Main Swiper -->
-  <div class="swiper product-main-swiper">
+  <div class="main-swiper swiper">
     <div class="swiper-wrapper">
       {% for media in product.media %}
-        <div class="swiper-slide" data-media-id="{{ media.id }}">
+        <div
+          class="swiper-slide"
+          data-media-id="{{ media.id }}"
+        >
           {% render 'product-thumbnail',
             media: media,
             media_count: product.media.size,
@@ -22,99 +24,99 @@
         </div>
       {% endfor %}
     </div>
-    <!-- Arrows -->
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
   </div>
 
-  <!-- Thumbnail Swiper -->
-  <div class="swiper product-thumb-swiper">
-    <div class="swiper-wrapper">
-      {% for media in product.media %}
-        <div class="swiper-slide" data-media-id="{{ media.id }}">
-          <img
-            src="{{ media.preview_image | image_url: width: 80 }}"
-            alt="{{ media.alt | escape }}"
-            loading="lazy"
-          />
-        </div>
-      {% endfor %}
-    </div>
+  <!-- Thumbnails -->
+  <div class="thumbnail-images">
+    {% for media in product.media %}
+      <img
+        src="{{ media.preview_image | image_url: width: 100 }}"
+        alt="{{ media.alt | escape }}"
+        onclick="mainSwiper.slideTo({{ forloop.index0 }})"
+        style="cursor:pointer; margin:5px; border:1px solid #ccc;"
+        width="100"
+        height="100"
+        data-media-id="{{ media.id }}"
+      />
+    {% endfor %}
   </div>
 
+  <!-- Product title (optional) -->
+  <div class="product-details">
+    <h2>{{ product.title }}</h2>
+  </div>
 </div>
 
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-  const thumbSwiper = new Swiper('.product-thumb-swiper', {
-    spaceBetween: 10,
-    slidesPerView: 4,
-    freeMode: true,
-    watchSlidesProgress: true,
-    breakpoints: {
-      768: {
-        direction: 'vertical'
-      }
-    }
-  });
-
-  const mainSwiper = new Swiper('.product-main-swiper', {
-    spaceBetween: 10,
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev'
-    },
-    thumbs: {
-      swiper: thumbSwiper
-    }
-  });
-
-  // Scroll to variant's media
-  const productForm = document.querySelector('form[action^="/cart"]');
-  if (productForm && window.productData) {
-    productForm.addEventListener('change', function () {
-      const selectedVariantId = productForm.querySelector('[name="id"]').value;
-      const variant = window.productData.variants.find(v => v.id == selectedVariantId);
-      const mediaId = variant?.featured_media?.id;
-      if (mediaId) {
-        const slide = document.querySelector(`.product-main-swiper .swiper-slide[data-media-id="${mediaId}"]`);
-        if (slide) {
-          const slideIndex = [...slide.parentNode.children].indexOf(slide);
-          mainSwiper.slideTo(slideIndex);
-        }
-      }
-    });
+<!-- Style -->
+<style>
+  .main-swiper {
+    width: 100%;
+    max-width: 600px;
+    height: 600px;
+    overflow: hidden;
   }
-});
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+  }
+  .thumbnail-images img {
+    border-radius: 4px;
+    opacity: 0.6;
+  }
+  .thumbnail-images img.active-thumb {
+    border: 2px solid #000;
+    opacity: 1;
+  }
+</style>
 
+<!-- Swiper CDN -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+<!-- Init Swiper -->
+<script>
+  let mainSwiper;
+
+  document.addEventListener("DOMContentLoaded", function () {
+    mainSwiper = new Swiper(".main-swiper", {
+      loop: false,
+      slidesPerView: 1,
+      spaceBetween: 10,
+    });
+
+    // Handle variant media scrolling
+    const form = document.querySelector("form[action^='/cart']");
+    if (form && window.productData) {
+      form.addEventListener("change", function () {
+        const variantId = form.querySelector("[name='id']").value;
+        const variant = window.productData.variants.find(v => v.id == variantId);
+        const mediaId = variant?.featured_media?.id;
+        if (mediaId) {
+          const targetSlide = document.querySelector(
+            `.swiper-slide[data-media-id='${mediaId}']`
+          );
+          if (targetSlide) {
+            const index = [...targetSlide.parentNode.children].indexOf(targetSlide);
+            mainSwiper.slideTo(index);
+          }
+        }
+      });
+    }
+
+    // Highlight active thumbnail
+    mainSwiper.on("slideChange", () => {
+      const activeId = document.querySelectorAll(".swiper-slide")[mainSwiper.activeIndex].dataset.mediaId;
+      document.querySelectorAll(".thumbnail-images img").forEach(img => {
+        img.classList.toggle("active-thumb", img.dataset.mediaId === activeId);
+      });
+    });
+  });
 </script>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-<script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-{{ 'swiper-init.js' | asset_url | script_tag }}
-
-<style>
-  .product-main-swiper {
-  width: 100%;
-  margin-bottom: 1rem;
-}
-.product-main-swiper .swiper-slide {
-  display: flex;
-  justify-content: center;
-}
-.product-thumb-swiper .swiper-slide {
-  width: 80px;
-  height: auto;
-  opacity: 0.5;
-  cursor: pointer;
-}
-.product-thumb-swiper .swiper-slide-thumb-active {
-  opacity: 1;
-}
-.swiper-button-next,
-.swiper-button-prev {
-  color: #000;
-}
-
-</style>
+<!-- Pass Product Data -->
+<script>
+  window.productData = {{ product | json }};
+</script>
