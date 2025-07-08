@@ -116,13 +116,3 @@ if (!customElements.get('media-gallery')) {
   );
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  const sliders = document.querySelectorAll('slider-component');
-  sliders.forEach(slider => {
-    if (!slider.classList.contains('initialized')) {
-      slider.classList.add('initialized');
-      slider.sliderInitialized = false;
-      slider.connectSlider(); // initialize Shopify slider logic
-    }
-  });
-});
