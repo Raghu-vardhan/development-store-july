@@ -1604,6 +1604,7 @@ a.product__text {
 }
 .img-30days{
   text-align: center;
+  padding: 0;
 }
 .img_include-3{
   display: flex;
