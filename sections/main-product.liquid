@@ -698,6 +698,27 @@
                       </div>
                       <div class="accordion-content {% if variant1.id == product.selected_or_first_available_variant.id %}active{% endif %}">
                         <p>Simple content for {{ variant1.title }}</p>
+                          <div class="varient-select_main">
+                            <div class="varient_sel_img">
+                              <input type="radio">
+                              <div class="variant-sel_1">
+                                <img src="{{ block.settings.variant_imgg1 | img_url:'medium' }}" alt="image" width="55" height="100%" >
+                              </div>
+                            </div>
+                              <div class="varient_sel_img">
+                              <input type="radio">
+                              <div class="variant-sel_1">
+                                <img src="{{ block.settings.variant_imgg3 | img_url:'medium' }}" alt="image" width="55" height="100%" >
+                              </div>
+                            </div>
+                              <div class="varient_sel_img">
+                              <input type="radio">
+                              <div class="variant-sel_1">
+                                <img src="{{ block.settings.variant_imgg3 | img_url:'medium' }}" alt="image" width="55" height="100%" >
+                              </div>
+                            </div>
+                          </div>
+                        {% comment %}  {% endcomment %}
                         <div class="include0">
                           <h4 class="heading-incli"> What’s Included:</h4>
                           <div class="image-include_flex">
@@ -818,6 +839,8 @@
                 <div class="add-cart">
                   <form method="post" action="/cart/add">
                     <input type="hidden" name="id" id="selected-variant-id" value="{{ product.selected_or_first_available_variant.id }}">
+                      <input type="hidden" name="properties[Selected Image]" id="selected-image-value" value="{{ product.media[0] | image_url }}">
+                      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
                     <button type="submit" class="btn btn--primary">Add to Cart</button>
                   </form>
                 </div>
