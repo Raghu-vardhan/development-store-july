@@ -3621,3 +3621,6 @@ details-disclosure > details {
 .swiper-button-prev {
   color: #000;
 }
+.main-swiper{
+  height: 100%;
+}
