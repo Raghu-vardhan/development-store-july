@@ -1636,11 +1636,12 @@ a.product__text {
       padding: 8px;
     border-radius: 10px;
 }
-.blue-tick{
-  padding-left: 10px;
-}
+
 .blue-tick li{
   font-size: 14px;
   font-weight: 400;
   color: #322D2D;
+}
+.blue-tick{
+  padding-left: 10px;
 }
