@@ -666,113 +666,99 @@
 
                 {% comment %} custom variant logic {% endcomment %}
                 {%- when 'subscripiton' -%}
-                <div class="accordion-wrapper">
+                  <div class="accordion-wrapper">
                   {% assign variant1 = product.variants[0] %}
                   {% assign variant2 = product.variants[1] %}
                   {% assign variant3 = product.variants[2] %}
 
-              <div class="subscription-main">
-                      <!-- Variant 1 -->
+                  <div class="subscription-main">
+                    <!-- Variant 1 -->
                     {% if variant1 %}
-                      <div class="accordion-button" onclick="selectVariant(event, '{{ variant2.id }}', 0)">
+                      <div class="accordion-button {% if variant1.id == product.selected_or_first_available_variant.id %}selected{% endif %}" onclick="selectVariant(event, '{{ variant1.id }}', 0)">
                         <div class="subscripition-full">
                           <div class="subcrition-title" style="display: flex; align-items: center; gap: 8px;">
-                            <!-- Radio Button -->
                             <input 
                               type="radio" 
                               name="selected_variant" 
                               value="{{ variant1.id }}" 
                               {% if variant1.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
                             />
-                            <h3>{{ variant2.title }}</h3>
+                            <h3>{{ variant1.title }}</h3>
                           </div>
                           <div class="scripiton-price">
                             <h6>{{ variant1.price | money }}</h6>
-                            {% if variant1.compare_at_price > variant2.price %}
+                            {% if variant1.compare_at_price > variant1.price %}
                               <h6><del>{{ variant1.compare_at_price | money }}</del></h6>
                             {% endif %}
                           </div>
                         </div>
                       </div>
+                      <div class="accordion-content {% if variant1.id == product.selected_or_first_available_variant.id %}active{% endif %}">
+                        <p>Simple content for {{ variant1.title }}</p>
+                      </div>
+                    {% endif %}
 
-                      <!-- 👇 This is required -->
-                        <div class="accordion-content {% if variant1.id == product.selected_or_first_available_variant.id %}active{% endif %}">
-                          <p>Simple content for {{ variant1.title }}</p>
+                    <!-- Variant 2 -->
+                    {% if variant2 %}
+                      <div class="accordion-button {% if variant2.id == product.selected_or_first_available_variant.id %}selected{% endif %}" onclick="selectVariant(event, '{{ variant2.id }}', 1)">
+                        <div class="subscripition-full">
+                          <div class="subcrition-title" style="display: flex; align-items: center; gap: 8px;">
+                            <input 
+                              type="radio" 
+                              name="selected_variant" 
+                              value="{{ variant2.id }}" 
+                              {% if variant2.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
+                            />
+                            <h3>{{ variant2.title }}</h3>
+                          </div>
+                          <div class="scripiton-price">
+                            <h6>{{ variant2.price | money }}</h6>
+                            {% if variant2.compare_at_price > variant2.price %}
+                              <h6><del>{{ variant2.compare_at_price | money }}</del></h6>
+                            {% endif %}
+                          </div>
                         </div>
-              {% endif %}
-
-
-                <!-- Variant 2 -->
-                {% if variant2 %}
-                  <div class="accordion-button" onclick="selectVariant(event, '{{ variant2.id }}', 1)">
-                    <div class="subscripition-full">
-                      <div class="subcrition-title" style="display: flex; align-items: center; gap: 8px;">
-                        <!-- Radio Button -->
-                        <input 
-                          type="radio" 
-                          name="selected_variant" 
-                          value="{{ variant2.id }}" 
-                          {% if variant2.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
-                        />
-                        <h3>{{ variant2.title }}</h3>
                       </div>
-                      <div class="scripiton-price">
-                        <h6>{{ variant2.price | money }}</h6>
-                        {% if variant2.compare_at_price > variant2.price %}
-                          <h6><del>{{ variant2.compare_at_price | money }}</del></h6>
-                        {% endif %}
+                      <div class="accordion-content {% if variant2.id == product.selected_or_first_available_variant.id %}active{% endif %}">
+                        <p>Simple content for {{ variant2.title }}</p>
                       </div>
-                    </div>
-                  </div>
+                    {% endif %}
 
-                  <!-- 👇 This is required -->
-                  <div class="accordion-content {% if variant1.id == product.selected_or_first_available_variant.id %}active{% endif %}">
-                    <p>Simple content for {{ variant1.title }}</p>
-                  </div>
-                  {% endif %}
-
-
-                <!-- Variant 3 -->
-                
-                {% if variant3 %}
-                  <div class="accordion-button" onclick="selectVariant(event, '{{ variant3.id }}', 2)">
-                    <div class="subscripition-full">
-                      <div class="subcrition-title" style="display: flex; align-items: center; gap: 8px;">
-                        <!-- Radio Button -->
-                        <input 
-                          type="radio" 
-                          name="selected_variant" 
-                          value="{{ variant2.id }}" 
-                          {% if variant3.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
-                        />
-                        <h3>{{ variant3.title }}</h3>
+                    <!-- Variant 3 -->
+                    {% if variant3 %}
+                      <div class="accordion-button {% if variant3.id == product.selected_or_first_available_variant.id %}selected{% endif %}" onclick="selectVariant(event, '{{ variant3.id }}', 2)">
+                        <div class="subscripition-full">
+                          <div class="subcrition-title" style="display: flex; align-items: center; gap: 8px;">
+                            <input 
+                              type="radio" 
+                              name="selected_variant" 
+                              value="{{ variant3.id }}" 
+                              {% if variant3.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
+                            />
+                            <h3>{{ variant3.title }}</h3>
+                          </div>
+                          <div class="scripiton-price">
+                            <h6>{{ variant3.price | money }}</h6>
+                            {% if variant3.compare_at_price > variant3.price %}
+                              <h6><del>{{ variant3.compare_at_price | money }}</del></h6>
+                            {% endif %}
+                          </div>
+                        </div>
                       </div>
-                      <div class="scripiton-price">
-                        <h6>{{ variant3.price | money }}</h6>
-                        {% if variant3.compare_at_price > variant3.price %}
-                          <h6><del>{{ varian3.compare_at_price | money }}</del></h6>
-                        {% endif %}
+                      <div class="accordion-content {% if variant3.id == product.selected_or_first_available_variant.id %}active{% endif %}">
+                        <p>Simple content for {{ variant3.title }}</p>
                       </div>
-                    </div>
+                    {% endif %}
                   </div>
+                </div>
 
-                  <!-- 👇 This is required -->
-                  <div class="accordion-content {% if variant1.id == product.selected_or_first_available_variant.id %}active{% endif %}">
-                    <p>Simple content for {{ variant1.title }}</p>
-                  </div>
-                {% endif %}
+                <div class="add-cart">
+                  <form method="post" action="/cart/add">
+                    <input type="hidden" name="id" id="selected-variant-id" value="{{ product.selected_or_first_available_variant.id }}">
+                    <button type="submit" class="btn btn--primary">Add to Cart</button>
+                  </form>
+                </div>
 
-                  </div>
-
-               </div>
-
-              <div class="add-cart">
-                  <!-- Hidden Add to Cart form -->
-                <form method="post" action="/cart/add">
-                  <input type="hidden" name="id" id="selected-variant-id" value="{{ variant1.id }}">
-                  <button type="submit" class="btn btn--primary">Add to Cart</button>
-                </form>
-              </div>
               {% comment %}  {% endcomment %}
               {%- endcase -%}
             {%- endfor -%}
