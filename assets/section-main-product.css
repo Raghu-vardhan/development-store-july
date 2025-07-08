@@ -1520,5 +1520,11 @@ a.product__text {
   }
   .subscripition-full{
     display: flex;
-    justify-content: space-between;;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .scripiton-price{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
   }
