@@ -686,9 +686,9 @@
                             <h3>{{ variant1.title }}</h3>
                           </div>
                           <div class="scripiton-price">
-                            <h6>{{ variant1.price | money }}</h6>
+                            <h6>{{ variant1.price |  money_without_trailing_zeros }}</h6>
                             {% if variant1.compare_at_price > variant1.price %}
-                              <h6><del>{{ variant1.compare_at_price | money }}</del></h6>
+                              <h6><del>{{ variant1.compare_at_price |  money_without_trailing_zeros }}</del></h6>
                             {% endif %}
                           </div>
                         </div>
@@ -712,9 +712,9 @@
                             <h3>{{ variant2.title }}</h3>
                           </div>
                           <div class="scripiton-price">
-                            <h6>{{ variant2.price | money }}</h6>
+                            <h6>{{ variant2.price |  money_without_trailing_zeros }}</h6>
                             {% if variant2.compare_at_price > variant2.price %}
-                              <h6><del>{{ variant2.compare_at_price | money }}</del></h6>
+                              <h6><del>{{ variant2.compare_at_price |  money_without_trailing_zeros }}</del></h6>
                             {% endif %}
                           </div>
                         </div>
@@ -738,9 +738,9 @@
                             <h3>{{ variant3.title }}</h3>
                           </div>
                           <div class="scripiton-price">
-                            <h6>{{ variant3.price | money }}</h6>
+                            <h6>{{ variant3.price |  money_without_trailing_zeros }}</h6>
                             {% if variant3.compare_at_price > variant3.price %}
-                              <h6><del>{{ variant3.compare_at_price | money }}</del></h6>
+                              <h6><del>{{ variant3.compare_at_price |  money_without_trailing_zeros }}</del></h6>
                             {% endif %}
                           </div>
                         </div>
@@ -2383,11 +2383,13 @@
   function selectVariant(event, variantId, index) {
     event.preventDefault();
 
-    // Update hidden input for Add to Cart
+    // Update hidden input value for Add to Cart
     const hiddenInput = document.getElementById('selected-variant-id');
-    if (hiddenInput) hiddenInput.value = variantId;
+    if (hiddenInput) {
+      hiddenInput.value = variantId;
+    }
 
-    // Toggle 'selected' on accordion buttons
+    // Toggle selected class on buttons
     const buttons = document.querySelectorAll('.accordion-button');
     const contents = document.querySelectorAll('.accordion-content');
     const radios = document.querySelectorAll('input[name="selected_variant"]');
@@ -2400,15 +2402,15 @@
       content.classList.toggle('active', i === index);
     });
 
-    // Check correct radio button
+    // Update radio buttons
     radios.forEach((radio) => {
       radio.checked = (radio.value === variantId);
     });
   }
 
-  // Automatically trigger the first accordion on page load
-  document.addEventListener("DOMContentLoaded", function() {
-    const firstButton = document.querySelector('.accordion-button');
-    if (firstButton) firstButton.click();
+  // On page load, open selected variant’s accordion
+  document.addEventListener("DOMContentLoaded", function () {
+    const selectedBtn = document.querySelector('.accordion-button.selected');
+    if (selectedBtn) selectedBtn.click();
   });
 </script>
