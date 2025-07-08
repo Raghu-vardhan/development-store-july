@@ -1590,6 +1590,10 @@ a.product__text {
   color:#322D2D;
   font-weight: 300;
 }
+.image-include_flex{
+  display: flex;
+  align-items: center;
+}
 .img_include-3{
   display: flex;
   align-items: center;
