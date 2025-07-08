@@ -1498,7 +1498,9 @@ a.product__text {
   .accordion-content {
     display: none;
   }
-
+  .accordion-wrapper{
+    cursor: pointer;
+  }
   .accordion-content.active {
     display: block;
   }
