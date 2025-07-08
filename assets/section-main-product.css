@@ -1502,9 +1502,6 @@ a.product__text {
   .accordion-content.active {
     display: block;
   }
-
-
-
   .subscripition-full {
     display: flex;
     justify-content: space-between;
@@ -1551,3 +1548,13 @@ a.product__text {
     display: block;
   }
 
+.scripiton-price h6{
+  font-size: 18px;
+    color: #322D2D;
+    font-weight: 600;
+}
+.scripiton-price del{
+    display: flex;
+    align-items: center;
+    gap: 3rem; 
+}
