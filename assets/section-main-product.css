@@ -1549,3 +1549,11 @@ a.product__text {
   border: 1px solid #B8B8B8;
 
 }
+
+  .accordion-content {
+    display: none;
+  }
+  .accordion-content.active {
+    display: block;
+  }
+
