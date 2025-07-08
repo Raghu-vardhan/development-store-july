@@ -1619,6 +1619,15 @@ a.product__text {
   padding: 10px;
   border-radius: 10px;
 }
+.image-include-left h5{
+  color: #6F7577;
+  font-weight: 300;
+  
+}
+.one-time h5{ 
+   color: #6F7577;
+   font-weight: 300;
+}
 .image-include-left{
    border: 1px solid #919798;
   min-width: 30%;
