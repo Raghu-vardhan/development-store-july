@@ -1575,3 +1575,6 @@ a.product__text {
     font-weight: 600;
     margin: 0;
 }
+.accordion-button .selected{
+  border: 0;
+}
