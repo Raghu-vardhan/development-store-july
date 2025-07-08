@@ -1500,7 +1500,7 @@ a.product__text {
     gap: 1rem;
   }
   .accordion-button {
-    background-color: #333;
+    background-color: transparent;
     color: #fff;
     border: none;
     padding: 0.75rem 1.5rem;
