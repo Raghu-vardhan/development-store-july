@@ -673,7 +673,7 @@
 
               <div class="subscription-main">
                       <!-- Variant 1 -->
-                <button class="accordion-button selected" onclick="selectVariant(event, '{{ variant1.id }}', 0)">
+                <div class="accordion-button selected" onclick="selectVariant(event, '{{ variant1.id }}', 0)">
                   <div class="subscripition-full">
                     <div class="subcrition-title"><h3>{{ variant1.title }}</h3></div>
                     <div class="scripiton-price">
@@ -683,16 +683,19 @@
                       {% endif %}
                     </div>
                   </div>
-                </button>
+                </div>
                 <div class="accordion-content active">
                   <p>Simple content for {{ variant1.title }}</p>
                 </div>
 
                 <!-- Variant 2 -->
                 {% if variant2 %}
-                  <button class="accordion-button" onclick="selectVariant(event, '{{ variant2.id }}', 1)">
+                  <div class="accordion-button" onclick="selectVariant(event, '{{ variant2.id }}', 1)">
                     <div class="subscripition-full">
-                      <div class="subcrition-title"><h3>{{ variant2.title }}</h3></div>
+                      <div class="subcrition-title">
+                        <input type="radio">
+                        <h3>{{ variant2.title }}</h3>
+                      </div>
                       <div class="scripiton-price">
                         <h6>{{ variant2.price | money }}</h6>
                         {% if variant2.compare_at_price > variant2.price %}
@@ -700,7 +703,7 @@
                         {% endif %}
                       </div>
                     </div>
-                  </button>
+                  </div>
                   <div class="accordion-content">
                     <p>Simple content for {{ variant2.title }}</p>
                   </div>
@@ -708,7 +711,7 @@
 
                 <!-- Variant 3 -->
                 {% if variant3 %}
-                  <button class="accordion-button" onclick="selectVariant(event, '{{ variant3.id }}', 2)">
+                  <div class="accordion-button" onclick="selectVariant(event, '{{ variant3.id }}', 2)">
                     <div class="subscripition-full">
                       <div class="subcrition-title"><h3>{{ variant3.title }}</h3></div>
                       <div class="scripiton-price">
@@ -718,7 +721,7 @@
                         {% endif %}
                       </div>
                     </div>
-                  </button>
+                  </div>
                   <div class="accordion-content">
                     <p>Simple content for {{ variant3.title }}</p>
                   </div>
