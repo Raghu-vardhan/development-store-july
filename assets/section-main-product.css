@@ -1508,6 +1508,7 @@ a.product__text {
     display: flex;
     justify-content: space-between;
     align-items: center;
+        padding: 15px 0;
   }
 
   .btn--primary {
@@ -1562,10 +1563,12 @@ a.product__text {
     gap: 3rem; 
 }
 .recommened-subscription{
-  text-align: center;
-  background-color: #A2845E;
-  color: #B8B8B8;
-  border: 1px solid #B8B8B8;
-  width: 100%;
-  padding: 10px;
+      text-align: center;
+    background-color: #a2845e;
+    color: #ffffff;
+    border: 1px solid #B8B8B8;
+    width: 100%;
+    padding: 10px;
+    font-size: 24px;
+    font-weight: 600;
 }
