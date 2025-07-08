@@ -26,8 +26,8 @@
     </div>
 
     <!-- ✅ Navigation Arrows -->
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"> </div>
+    <div class="swiper-button-next"> </div>
   </div>
 
   <!-- Thumbnails -->
@@ -60,7 +60,8 @@
   window.productData = {{ product | json }};
 </script>
 
-<!-- Init Swiper -->
+
+<!-- Swiper Initialization -->
 <script>
   let mainSwiper;
 
@@ -69,13 +70,22 @@
       loop: false,
       slidesPerView: 1,
       spaceBetween: 10,
+      grabCursor: true,
       navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev'
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev"
+      },
+      keyboard: {
+        enabled: true,
+        onlyInViewport: true
+      },
+      mousewheel: {
+        forceToAxis: true,
+        sensitivity: 1
       }
     });
 
-    // Variant switch scroll
+    // Sync variant media
     const form = document.querySelector("form[action^='/cart']");
     if (form && window.productData) {
       form.addEventListener("change", function () {
@@ -92,15 +102,26 @@
       });
     }
 
-    // Active thumbnail highlight
+    // Thumbnail click scroll
+    document.querySelectorAll(".thumbnail-images img").forEach((thumb, i) => {
+      thumb.addEventListener("click", () => {
+        mainSwiper.slideTo(i);
+      });
+    });
+
+    // Highlight active thumbnail
     mainSwiper.on("slideChange", () => {
-      const activeId = document.querySelectorAll(".swiper-slide")[mainSwiper.activeIndex].dataset.mediaId;
+      const activeId = document.querySelectorAll(".swiper-slide")[mainSwiper.activeIndex]?.dataset.mediaId;
       document.querySelectorAll(".thumbnail-images img").forEach(img => {
         img.classList.toggle("active-thumb", img.dataset.mediaId === activeId);
       });
     });
   });
 </script>
+
+
+
+
 
 <!-- Styles -->
 <style>
