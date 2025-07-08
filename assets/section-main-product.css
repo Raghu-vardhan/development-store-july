@@ -1618,3 +1618,8 @@ a.product__text {
   padding: 10px;
   border-radius: 10px;
 }
+.image-include-left{
+   border: 1px solid #919798;
+  min-width: 30%;
+  max-width: 30%;
+}
