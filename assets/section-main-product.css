@@ -1585,5 +1585,7 @@ a.product__text {
   border: 0;
   border-bottom: 1px solid #919798;
   border-radius: 0;
-
+}
+.subcrition-title h3{
+  color:#322D2D;
 }
