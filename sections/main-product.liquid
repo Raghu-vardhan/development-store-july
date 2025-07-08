@@ -688,7 +688,7 @@
                           <div class="scripiton-price">
                             <h6>{{ variant1.price |  money_without_trailing_zeros }}</h6>
                             {% if variant1.compare_at_price > variant1.price %}
-                              <h6><del style="color:#B8B8B8" >{{ variant1.compare_at_price |  money_without_trailing_zeros }}</del></h6>
+                              <h6><del style="color:#B8B8B8; font-weight:300">{{ variant1.compare_at_price |  money_without_trailing_zeros }}</del></h6>
                             {% endif %}
                           </div>
                         </div>
@@ -714,7 +714,7 @@
                           <div class="scripiton-price">
                             <h6>{{ variant2.price |  money_without_trailing_zeros }}</h6>
                             {% if variant2.compare_at_price > variant2.price %}
-                              <h6><del>{{ variant2.compare_at_price |  money_without_trailing_zeros }}</del></h6>
+                              <h6><del style="color:#B8B8B8; font-weight:300">{{ variant2.compare_at_price |  money_without_trailing_zeros }}</del></h6>
                             {% endif %}
                           </div>
                         </div>
@@ -740,7 +740,7 @@
                           <div class="scripiton-price">
                             <h6>{{ variant3.price |  money_without_trailing_zeros }}</h6>
                             {% if variant3.compare_at_price > variant3.price %}
-                              <h6><del>{{ variant3.compare_at_price |  money_without_trailing_zeros }}</del></h6>
+                              <h6><del style="color:#B8B8B8; font-weight:300">{{ variant3.compare_at_price |  money_without_trailing_zeros }}</del></h6>
                             {% endif %}
                           </div>
                         </div>
