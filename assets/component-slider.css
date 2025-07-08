@@ -375,3 +375,23 @@ slider-component.slider-component-full-width {
 .slider-button--prev:not([disabled]):hover .icon {
   transform: rotate(90deg) scale(1.1);
 }
+
+@media screen and (min-width: 750px) {
+  .slider--everywhere {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+  }
+
+  .slider--everywhere > * {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+  }
+
+  .slider-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
+}
