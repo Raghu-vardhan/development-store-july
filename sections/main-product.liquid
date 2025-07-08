@@ -2353,8 +2353,16 @@
 
 
 <script>
-   function toggleAccordion(button) {
-    const content = button.nextElementSibling;
-    content.classList.toggle('active');
+   function selectVariant(event, variantId, index) {
+    event.preventDefault();
+    document.getElementById('selected-variant-id').value = variantId;
+
+    const buttons = document.querySelectorAll('.accordion-button');
+    const contents = document.querySelectorAll('.accordion-content');
+
+    buttons.forEach((btn, i) => {
+      btn.classList.toggle('selected', i === index);
+      contents[i].classList.toggle('active', i === index);
+    });
   }
 </script>
