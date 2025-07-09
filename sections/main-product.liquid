@@ -685,21 +685,21 @@
                             />
                         </div>
                         <div class="subscripition-full">
-                            <div class="subcrition-title" style="display: flex; justify-content:space-around;">
+                            <div class="subcrition-title" >
                               <h3>{{ variant1.title }}</h3>
-                              <div class="scripiton-price">
-                                <h6>{{ variant1.price |  money_without_trailing_zeros }}</h6>
-                                {% if variant1.compare_at_price > variant1.price %}
-                                  <h6><del style="color:#B8B8B8; font-weight:300">{{ variant1.compare_at_price |  money_without_trailing_zeros }}</del></h6>
-                                {% endif %}
-                             </div>
-                             </div>
+                            </div>
+                            <div class="scripiton-price">
+                              <h6>{{ variant1.price |  money_without_trailing_zeros }}</h6>
+                              {% if variant1.compare_at_price > variant1.price %}
+                                <h6><del style="color:#B8B8B8; font-weight:300">{{ variant1.compare_at_price |  money_without_trailing_zeros }}</del></h6>
+                              {% endif %}
+                            </div>
                         </div>
                       </div>
                       <div class="accordion-content {% if variant1.id == product.selected_or_first_available_variant.id %}active{% endif %}">
                         
                         <h4 class="heading-incli">Choose Falvour:</h4>
-                          <div class="variant-selectt_main">
+                          <div class="variant-select_main">
                             <div class="varient_sel_img" onclick="mainSwiper.slideTo(0)">
                               <div class="var_btn">
                                 <input type="radio">
