@@ -676,26 +676,24 @@
                     {% if variant1 %}
                       
                       <div class="accordion-button {% if variant1.id == product.selected_or_first_available_variant.id %}selected{% endif %}" onclick="selectVariant(event, '{{ variant1.id }}', 0)">
-                        
-                        <div class="subscripition-full">
-                          <div class="">
+                        <div class="">
                              <input 
                               type="radio" 
                               name="selected_variant" 
                               value="{{ variant1.id }}" 
                               {% if variant1.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
                             />
-                          </div>
-                          <div class="subcrition-title" style="display: flex; justify-content:space-between;">
-                            <h3>{{ variant1.title }}</h3>
-                            <div class="scripiton-price">
-                            <h6>{{ variant1.price |  money_without_trailing_zeros }}</h6>
-                            {% if variant1.compare_at_price > variant1.price %}
-                              <h6><del style="color:#B8B8B8; font-weight:300">{{ variant1.compare_at_price |  money_without_trailing_zeros }}</del></h6>
-                            {% endif %}
-                          </div>
-                          </div>
-                          
+                        </div>
+                        <div class="subscripition-full">
+                            <div class="subcrition-title" style="display: flex; justify-content:space-around;">
+                              <h3>{{ variant1.title }}</h3>
+                              <div class="scripiton-price">
+                                <h6>{{ variant1.price |  money_without_trailing_zeros }}</h6>
+                                {% if variant1.compare_at_price > variant1.price %}
+                                  <h6><del style="color:#B8B8B8; font-weight:300">{{ variant1.compare_at_price |  money_without_trailing_zeros }}</del></h6>
+                                {% endif %}
+                             </div>
+                             </div>
                         </div>
                       </div>
                       <div class="accordion-content {% if variant1.id == product.selected_or_first_available_variant.id %}active{% endif %}">
