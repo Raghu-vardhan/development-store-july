@@ -670,7 +670,7 @@
                   {% assign variant1 = product.variants[0] %}
                   {% assign variant2 = product.variants[1] %}
                   {% assign variant3 = product.variants[2] %}
-                  {% assign variant4 = product.variants[3] %} 
+                  {% assign variant4 = product.variants[3] %}
                   {% assign variant5 = product.variants[4] %}
                   {% assign variant6 = product.variants[5] %}
 
@@ -678,14 +678,16 @@
                     <!-- Variant 1 -->
                     {% if variant1 %}
                       
-                      <div class="accordion-button ">
+                      <div class="accordion-button {% if variant1.id == product.selected_or_first_available_variant.id %}selected{% endif %}" onclick="selectVariant(event, '{{ variant1.id }}', 0)">
                         <div class="subscripition-full">
                             <div class="subcrition-title" >
                               <input 
                               type="radio" 
                               name="selected_variant" 
+                              value="{{ variant1.id }}" 
+                              {% if variant1.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
                             />
-                              <h3>Single Subscription</h3>
+                              <h3>{{ variant1.title }}</h3>
                             </div>
                             <div class="scripiton-price">
                               <h6>{{ variant1.price |  money }}</h6>
@@ -702,12 +704,12 @@
                             <div class="varient_sel_img" onclick="mainSwiper.slideTo(0)">
                               <div class="var_btn">
                                <input 
-                                  type="radio" 
-                                  name="flavor_option" 
-                                 value="{{ variant1.id }}" 
-                              {% if variant1.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
-                                />
-                                <p for="flavor_chocolate_0">{{variant1.title}}</p>
+                                type="radio" 
+                                name="flavor_option_0" 
+                                value="{{  variant4.id }}" 
+                                {% if variant4.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
+                              />
+                                <p for="flavor_chocolate_0">{{variant4.name}}</p>
                               </div>
                               <div class="variant-sel_1">
                                 <img src="{{ block.settings.variant_imgg1 | img_url:'medium' }}" alt="image" width="55" height="100%" >
@@ -716,12 +718,13 @@
                               <div class="varient_sel_img" onclick="mainSwiper.slideTo(2)">
                                 <div class="var_btn">
                                    <input 
-                                      type="radio" 
-                                      name="flavor_option" 
-                                      value="{{ variant2.id }}" 
-                                      {% if variant2.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
-                                    />
-                                  <p for="flavor_vanilla_1">{{variant5.title}}</p>  
+                                    type="radio" 
+                                    name="flavor_option_1" 
+                                    value="{{ variant5.id }}" 
+                                    {% if variant5.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
+                                    id="flavor_vanilla_1"
+                                  />
+                                  <p for="flavor_vanilla_1">{{variant5.name}}</p>  
                                 </div>
                                 <div class="variant-sel_1">
                                   <img src="{{ block.settings.variant_img | img_url:'medium' }}" alt="image" width="55" height="100%" >
@@ -729,13 +732,13 @@
                             </div>
                               <div class="varient_sel_img" onclick="mainSwiper.slideTo(1)">
                                 <div class="var_btn">
-                               <input 
+                                <input 
                                   type="radio" 
-                                  name="flavor_option" 
-                                  value="{{ variant3.id }}" 
-                                  {% if variant3.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
+                                  name="flavor_option_2" 
+                                  value="{{ variant5.id }}" 
+                                    {% if variant6.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
                                 />
-                                <p for="flavor_orange_2" >{{variant6.title}}</p>
+                                <p for="flavor_orange_2" >{{variant6.name}}</p>
                               </div>
                               <div class="variant-sel_1">
                                 <img src="{{ block.settings.variant_imgg2 | img_url:'medium' }}" alt="image" width="55" height="100%" >
@@ -785,13 +788,15 @@
                             <input 
                               type="radio" 
                               name="selected_variant" 
+                              value="{{ variant2.id }}" 
+                              {% if variant2.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
                             />
                             <h3>{{ variant2.title }}</h3>
                           </div>
                           <div class="scripiton-price">
-                            <h6>{{ variant4.price |  money_without_trailing_zeros }}</h6>
-                            {% if variant4.compare_at_price > variant2.price %}
-                              <h6><del style="color:#B8B8B8; font-weight:300">{{ variant4.compare_at_price |  money_without_trailing_zeros }}</del></h6>
+                            <h6>{{ variant2.price |  money_without_trailing_zeros }}</h6>
+                            {% if variant2.compare_at_price > variant2.price %}
+                              <h6><del style="color:#B8B8B8; font-weight:300">{{ variant2.compare_at_price |  money_without_trailing_zeros }}</del></h6>
                             {% endif %}
                           </div>
                         </div>
@@ -2501,60 +2506,51 @@
 
 
 
+
 <script>
   function selectVariant(event, variantId, index) {
-    event.preventDefault();
+  event.preventDefault();
 
-    // Update hidden input for Add to Cart
-    const hiddenInput = document.getElementById('selected-variant-id');
-    if (hiddenInput) {
-      hiddenInput.value = variantId;
-    }
-
-    // Toggle selected class on accordion buttons
-    const buttons = document.querySelectorAll('.accordion-button');
-    const contents = document.querySelectorAll('.accordion-content');
-    const radios = document.querySelectorAll('input[name="selected_variant"]');
-
-    buttons.forEach((btn, i) => {
-      btn.classList.toggle('selected', i === index);
-    });
-
-    contents.forEach((content, i) => {
-      content.classList.toggle('active', i === index);
-    });
-
-    // Update variant radio buttons
-    radios.forEach((radio) => {
-      radio.checked = (radio.value === variantId);
-    });
+  // Update hidden input value for Add to Cart
+  const hiddenInput = document.getElementById('selected-variant-id');
+  if (hiddenInput) {
+    hiddenInput.value = variantId;
   }
 
-  document.addEventListener("DOMContentLoaded", function () {
-    // Open accordion for initially selected variant
-    const selectedBtn = document.querySelector('.accordion-button.selected');
-    if (selectedBtn) selectedBtn.click();
+  // Toggle selected class on buttons
+  const buttons = document.querySelectorAll('.accordion-button');
+  const contents = document.querySelectorAll('.accordion-content');
+  const radios = document.querySelectorAll('input[name="selected_variant"]');
 
-    // Update hidden input when flavor is changed
-    document.querySelectorAll('input[name="flavor_option"]').forEach(radio => {
-      radio.addEventListener('change', function () {
-        const hiddenFlavorInput = document.getElementById('selected-flavor');
-        if (hiddenFlavorInput) {
-          hiddenFlavorInput.value = this.value;
-        }
-      });
-    });
+  buttons.forEach((btn, i) => {
+    btn.classList.toggle('selected', i === index);
+  });
 
-    // Optionally: auto-select the first flavor if none is selected
-    const flavorRadios = document.querySelectorAll('input[name="flavor_option"]');
-    if (flavorRadios.length > 0 && !document.querySelector('input[name="flavor_option"]:checked')) {
-      flavorRadios[0].checked = true;
+  contents.forEach((content, i) => {
+    content.classList.toggle('active', i === index);
+  });
+
+  // Update variant radio buttons
+  radios.forEach((radio) => {
+    radio.checked = (radio.value === variantId);
+  });
+}
+
+// On page load, open selected variant’s accordion
+document.addEventListener("DOMContentLoaded", function () {
+  const selectedBtn = document.querySelector('.accordion-button.selected');
+  if (selectedBtn) selectedBtn.click();
+
+  // Flavor radio handling
+  document.querySelectorAll('input[name^="flavor_option_"]').forEach(radio => {
+    radio.addEventListener('change', function () {
       const hiddenFlavorInput = document.getElementById('selected-flavor');
       if (hiddenFlavorInput) {
-        hiddenFlavorInput.value = flavorRadios[0].value;
+        hiddenFlavorInput.value = this.value;
       }
-    }
+    });
   });
-</script>
+});
 
+</script>
 
