@@ -709,7 +709,7 @@
                                 value="{{  variant4.id }}" 
                                 {% if variant4.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
                               />
-                                <p for="flavor_chocolate_0">variant4.name</p>
+                                <p for="flavor_chocolate_0">{{variant4.name}}</p>
                               </div>
                               <div class="variant-sel_1">
                                 <img src="{{ block.settings.variant_imgg1 | img_url:'medium' }}" alt="image" width="55" height="100%" >
@@ -724,7 +724,7 @@
                                     {% if variant5.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
                                     id="flavor_vanilla_1"
                                   />
-                                  <p for="flavor_vanilla_1">variant5.name</p>  
+                                  <p for="flavor_vanilla_1">{{variant5.name}}</p>  
                                 </div>
                                 <div class="variant-sel_1">
                                   <img src="{{ block.settings.variant_img | img_url:'medium' }}" alt="image" width="55" height="100%" >
@@ -735,10 +735,10 @@
                                 <input 
                                   type="radio" 
                                   name="flavor_option_2" 
-                                  value="orange" 
-                                  id="flavor_orange_2"
+                                  value="{{ variant5.id }}" 
+                                    {% if variant6.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
                                 />
-                                <p for="flavor_orange_2" >variant5.name</p>
+                                <p for="flavor_orange_2" >{{variant6.name}}</p>
                               </div>
                               <div class="variant-sel_1">
                                 <img src="{{ block.settings.variant_imgg2 | img_url:'medium' }}" alt="image" width="55" height="100%" >
