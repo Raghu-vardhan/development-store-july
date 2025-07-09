@@ -376,3 +376,7 @@ slider-component.slider-component-full-width {
   transform: rotate(90deg) scale(1.1);
 }
 
+.var_btn{
+  text-align: left;
+    padding-left: 10px;
+}
