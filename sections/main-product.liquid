@@ -670,7 +670,7 @@
                   {% assign variant1 = product.variants[0] %}
                   {% assign variant2 = product.variants[1] %}
                   {% assign variant3 = product.variants[2] %}
-                  {% assign variant4 = product.variants[3] %}
+                  {% assign variant4 = product.variants[3] %} 
                   {% assign variant5 = product.variants[4] %}
                   {% assign variant6 = product.variants[5] %}
 
@@ -687,7 +687,7 @@
                               value="{{ variant1.id }}" 
                               {% if variant1.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
                             />
-                              <h3>{{ variant5.title }}</h3>
+                              <h3>{{ variant1.title }}</h3>
                             </div>
                             <div class="scripiton-price">
                               <h6>{{ variant1.price |  money }}</h6>
