@@ -686,15 +686,16 @@
                               {% if variant1.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
                             />
                           </div>
-                          <div class="subcrition-title" style="display: flex; align-items: center; gap: 8px;">
+                          <div class="subcrition-title" style="display: flex; justify-content:space-between;">
                             <h3>{{ variant1.title }}</h3>
-                          </div>
-                          <div class="scripiton-price">
+                            <div class="scripiton-price">
                             <h6>{{ variant1.price |  money_without_trailing_zeros }}</h6>
                             {% if variant1.compare_at_price > variant1.price %}
                               <h6><del style="color:#B8B8B8; font-weight:300">{{ variant1.compare_at_price |  money_without_trailing_zeros }}</del></h6>
                             {% endif %}
                           </div>
+                          </div>
+                          
                         </div>
                       </div>
                       <div class="accordion-content {% if variant1.id == product.selected_or_first_available_variant.id %}active{% endif %}">
