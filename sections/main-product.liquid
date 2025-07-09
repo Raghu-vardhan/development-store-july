@@ -678,7 +678,7 @@
                     <!-- Variant 1 -->
                     {% if variant1 %}
                       
-                      <div class="accordion-button selected">
+                      <div class="accordion-button selected" onclick="selectVariant(event, 0)">
                         <div class="subscripition-full">
                             <div class="subcrition-title" >
                               <input 
@@ -779,7 +779,7 @@
 
                     <!-- Variant 2 -->
                     {% if variant2 %}
-                      <div class="accordion-button selected" onclick="selectVariant(event, '{{ variant2.id }}', 1)">
+                      <div class="accordion-button selected" onclick="selectVariant(event, 1)">
                         <div class="subscripition-full">
                           <div class="subcrition-title" style="display: flex; align-items: center; gap: 8px;">
                             <input 
