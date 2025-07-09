@@ -1659,10 +1659,10 @@ a.product__text {
 }
 .variant-selectt_main{
   display: flex;
-  gap: 3em;
+  gap: 1em;
 }
 .varient_sel_img{
-  width: 30%;
+  width: 25%;
   background: #F9F9F9;
   text-align: center;
   border-radius: 10px;
