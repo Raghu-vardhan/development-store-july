@@ -678,7 +678,7 @@
                     <!-- Variant 1 -->
                     {% if variant1 %}
                       
-                      <div class="accordion-button selected" onclick="selectVariant(event, 0)">
+                      <div class="accordion-button ">
                         <div class="subscripition-full">
                             <div class="subcrition-title" >
                               <input 
@@ -695,7 +695,7 @@
                             </div>
                         </div>
                       </div>
-                      <div class="accordion-content active">
+                      <div class="accordion-content {% if variant1.id == product.selected_or_first_available_variant.id %}active{% endif %}">
                         
                         <h4 class="heading-incli">Choose Falvour:</h4>
                           <div class="variant-select_main ">
@@ -707,7 +707,7 @@
                                  value="{{ variant1.id }}" 
                               {% if variant1.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
                                 />
-                                <p for="flavor_chocolate_0" > {{variant1.title}}</p>
+                                <p for="flavor_chocolate_0">{{variant1.title}}</p>
                               </div>
                               <div class="variant-sel_1">
                                 <img src="{{ block.settings.variant_imgg1 | img_url:'medium' }}" alt="image" width="55" height="100%" >
@@ -721,7 +721,7 @@
                                       value="{{ variant2.id }}" 
                                       {% if variant2.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
                                     />
-                                  <p for="flavor_vanilla_1"> {{variant2.title}}</p>  
+                                  <p for="flavor_vanilla_1">{{variant5.title}}</p>  
                                 </div>
                                 <div class="variant-sel_1">
                                   <img src="{{ block.settings.variant_img | img_url:'medium' }}" alt="image" width="55" height="100%" >
@@ -735,7 +735,7 @@
                                   value="{{ variant3.id }}" 
                                   {% if variant3.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
                                 />
-                                <p for="flavor_orange_2" >  {{variant3.title}}</p>
+                                <p for="flavor_orange_2" >{{variant6.title}}</p>
                               </div>
                               <div class="variant-sel_1">
                                 <img src="{{ block.settings.variant_imgg2 | img_url:'medium' }}" alt="image" width="55" height="100%" >
@@ -779,7 +779,7 @@
 
                     <!-- Variant 2 -->
                     {% if variant2 %}
-                      <div class="accordion-button selected" onclick="selectVariant(event, 1)">
+                      <div class="accordion-button {% if variant2.id == product.selected_or_first_available_variant.id %}selected{% endif %}" onclick="selectVariant(event, '{{ variant2.id }}', 1)">
                         <div class="subscripition-full">
                           <div class="subcrition-title" style="display: flex; align-items: center; gap: 8px;">
                             <input 
@@ -796,7 +796,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="accordion-content active">
+                      <div class="accordion-content {% if variant2.id == product.selected_or_first_available_variant.id %}active{% endif %}">
                          <div class="include0">
                           <h4 class="heading-incli"> What’s Included:</h4>
                           <div class="image-include_flex">
