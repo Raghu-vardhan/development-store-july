@@ -700,7 +700,11 @@
                           <div class="variant-select_main ">
                             <div class="varient_sel_img" onclick="mainSwiper.slideTo(0)">
                               <div class="var_btn">
-                                <input type="radio">
+                                <input type="radio" 
+                                type="radio" 
+                                name="flavor_option_0" 
+                                value="chocolate" 
+                                id="flavor_chocolate_0">
                                 <p>Chocolate</p>
                               </div>
                               <div class="variant-sel_1">
@@ -709,7 +713,11 @@
                             </div>
                               <div class="varient_sel_img" onclick="mainSwiper.slideTo(2)">
                                 <div class="var_btn">
-                                  <input type="radio">
+                                   <input type="radio" 
+                                type="radio" 
+                                name="flavor_option_1" 
+                                value="chocolate" 
+                                id="flavor_vanilla_1">
                                   <p>Vanilla</p>  
                                 </div>
                                 <div class="variant-sel_1">
@@ -718,7 +726,11 @@
                             </div>
                               <div class="varient_sel_img" onclick="mainSwiper.slideTo(1)">
                                 <div class="var_btn">
-                                <input type="radio">
+                                <input type="radio" 
+                                type="radio" 
+                                name="flavor_option_2" 
+                                value="chocolate" 
+                                id="flavor_orange_2">
                                 <p>Orange</p>
                               </div>
                               <div class="variant-sel_1">
@@ -2522,4 +2534,15 @@
     const selectedBtn = document.querySelector('.accordion-button.selected');
     if (selectedBtn) selectedBtn.click();
   });
+
+  document.querySelectorAll('input[name="flavor_option"]').forEach(radio => {
+  radio.addEventListener('change', function () {
+    const hiddenFlavorInput = document.getElementById('selected-flavor');
+    if (hiddenFlavorInput) {
+      hiddenFlavorInput.value = this.value;
+    }
+  });
+});
+
 </script>
+
