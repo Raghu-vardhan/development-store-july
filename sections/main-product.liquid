@@ -676,16 +676,14 @@
                     {% if variant1 %}
                       
                       <div class="accordion-button {% if variant1.id == product.selected_or_first_available_variant.id %}selected{% endif %}" onclick="selectVariant(event, '{{ variant1.id }}', 0)">
-                        <div class="">
-                             <input 
+                        <div class="subscripition-full">
+                            <div class="subcrition-title" >
+                              <input 
                               type="radio" 
                               name="selected_variant" 
                               value="{{ variant1.id }}" 
                               {% if variant1.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
                             />
-                        </div>
-                        <div class="subscripition-full">
-                            <div class="subcrition-title" >
                               <h3>{{ variant1.title }}</h3>
                             </div>
                             <div class="scripiton-price">
