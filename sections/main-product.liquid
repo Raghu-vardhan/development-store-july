@@ -678,7 +678,7 @@
                     <!-- Variant 1 -->
                     {% if variant1 %}
                       
-                      <div class="accordion-button ">
+                      <div class="accordion-button selected">
                         <div class="subscripition-full">
                             <div class="subcrition-title" >
                               <input 
@@ -695,7 +695,7 @@
                             </div>
                         </div>
                       </div>
-                      <div class="accordion-content {% if variant1.id == product.selected_or_first_available_variant.id %}active{% endif %}">
+                      <div class="accordion-content active">
                         
                         <h4 class="heading-incli">Choose Falvour:</h4>
                           <div class="variant-select_main ">
@@ -779,7 +779,7 @@
 
                     <!-- Variant 2 -->
                     {% if variant2 %}
-                      <div class="accordion-button {% if variant2.id == product.selected_or_first_available_variant.id %}selected{% endif %}" onclick="selectVariant(event, '{{ variant2.id }}', 1)">
+                      <div class="accordion-button selected" onclick="selectVariant(event, '{{ variant2.id }}', 1)">
                         <div class="subscripition-full">
                           <div class="subcrition-title" style="display: flex; align-items: center; gap: 8px;">
                             <input 
@@ -796,7 +796,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="accordion-content {% if variant2.id == product.selected_or_first_available_variant.id %}active{% endif %}">
+                      <div class="accordion-content active">
                          <div class="include0">
                           <h4 class="heading-incli"> What’s Included:</h4>
                           <div class="image-include_flex">
