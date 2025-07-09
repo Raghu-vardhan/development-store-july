@@ -1664,7 +1664,7 @@ a.product__text {
   text-align: center;
   border-radius: 10px;
 }
-.variant-select_main{
+.variant-select_main,.subcrition-title{
   display: flex;
   gap: 1em;
 }
