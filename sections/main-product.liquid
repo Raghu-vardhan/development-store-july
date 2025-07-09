@@ -672,6 +672,7 @@
                   {% assign variant3 = product.variants[2] %}
                   {% assign variant4 = product.variants[3] %}
                   {% assign variant5 = product.variants[4] %}
+                  {% assign variant6 = product.variants[5] %}
 
                   <div class="subscription-main">
                     <!-- Variant 1 -->
@@ -686,7 +687,7 @@
                               value="{{ variant1.id }}" 
                               {% if variant1.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
                             />
-                              <h3>{{ variant3.title }}</h3>
+                              <h3>{{ variant1.title }}</h3>
                             </div>
                             <div class="scripiton-price">
                               <h6>{{ variant1.price |  money }}</h6>
@@ -705,9 +706,10 @@
                                <input 
                                 type="radio" 
                                 name="flavor_option_0" 
-                                value="{{  variant3.id }}" 
+                                value="{{  variant4.id }}" 
+                                {% if variant4.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
                               />
-                                <p for="flavor_chocolate_0">Chocolate</p>
+                                <p for="flavor_chocolate_0">variant4.name</p>
                               </div>
                               <div class="variant-sel_1">
                                 <img src="{{ block.settings.variant_imgg1 | img_url:'medium' }}" alt="image" width="55" height="100%" >
@@ -718,10 +720,11 @@
                                    <input 
                                     type="radio" 
                                     name="flavor_option_1" 
-                                    value="vanilla" 
+                                    value="{{ variant5.id }}" 
+                                    {% if variant5.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
                                     id="flavor_vanilla_1"
                                   />
-                                  <p for="flavor_vanilla_1">Vanilla</p>  
+                                  <p for="flavor_vanilla_1">variant5.name</p>  
                                 </div>
                                 <div class="variant-sel_1">
                                   <img src="{{ block.settings.variant_img | img_url:'medium' }}" alt="image" width="55" height="100%" >
@@ -735,7 +738,7 @@
                                   value="orange" 
                                   id="flavor_orange_2"
                                 />
-                                <p for="flavor_orange_2" >Orange</p>
+                                <p for="flavor_orange_2" >variant5.name</p>
                               </div>
                               <div class="variant-sel_1">
                                 <img src="{{ block.settings.variant_imgg2 | img_url:'medium' }}" alt="image" width="55" height="100%" >
