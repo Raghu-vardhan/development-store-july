@@ -704,11 +704,11 @@
                             <div class="varient_sel_img" onclick="mainSwiper.slideTo(0)">
                               <div class="var_btn">
                                <input 
-                                type="radio" 
-                                name="flavor_option_0" 
-                                value="{{  variant4.id }}" 
-                                {% if variant4.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
-                              />
+                                  type="radio" 
+                                  name="flavor_option" 
+                                  value="{{  variant4.id }}" 
+                                  {% if variant4.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
+                                />
                                 <p for="flavor_chocolate_0">{{variant4.title}}</p>
                               </div>
                               <div class="variant-sel_1">
@@ -718,12 +718,11 @@
                               <div class="varient_sel_img" onclick="mainSwiper.slideTo(2)">
                                 <div class="var_btn">
                                    <input 
-                                    type="radio" 
-                                    name="flavor_option_1" 
-                                    value="{{ variant5.id }}" 
-                                    {% if variant5.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
-                                    id="flavor_vanilla_1"
-                                  />
+                                      type="radio" 
+                                      name="flavor_option" 
+                                      value="{{ variant5.id }}" 
+                                      {% if variant5.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
+                                    />
                                   <p for="flavor_vanilla_1">{{variant5.title}}</p>  
                                 </div>
                                 <div class="variant-sel_1">
@@ -732,11 +731,11 @@
                             </div>
                               <div class="varient_sel_img" onclick="mainSwiper.slideTo(1)">
                                 <div class="var_btn">
-                                <input 
+                               <input 
                                   type="radio" 
-                                  name="flavor_option_2" 
-                                  value="{{ variant5.id }}" 
-                                    {% if variant6.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
+                                  name="flavor_option" 
+                                  value="{{ variant6.id }}" 
+                                  {% if variant6.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
                                 />
                                 <p for="flavor_orange_2" >{{variant6.title}}</p>
                               </div>
@@ -2506,51 +2505,60 @@
 
 
 
-
 <script>
   function selectVariant(event, variantId, index) {
-  event.preventDefault();
+    event.preventDefault();
 
-  // Update hidden input value for Add to Cart
-  const hiddenInput = document.getElementById('selected-variant-id');
-  if (hiddenInput) {
-    hiddenInput.value = variantId;
+    // Update hidden input for Add to Cart
+    const hiddenInput = document.getElementById('selected-variant-id');
+    if (hiddenInput) {
+      hiddenInput.value = variantId;
+    }
+
+    // Toggle selected class on accordion buttons
+    const buttons = document.querySelectorAll('.accordion-button');
+    const contents = document.querySelectorAll('.accordion-content');
+    const radios = document.querySelectorAll('input[name="selected_variant"]');
+
+    buttons.forEach((btn, i) => {
+      btn.classList.toggle('selected', i === index);
+    });
+
+    contents.forEach((content, i) => {
+      content.classList.toggle('active', i === index);
+    });
+
+    // Update variant radio buttons
+    radios.forEach((radio) => {
+      radio.checked = (radio.value === variantId);
+    });
   }
 
-  // Toggle selected class on buttons
-  const buttons = document.querySelectorAll('.accordion-button');
-  const contents = document.querySelectorAll('.accordion-content');
-  const radios = document.querySelectorAll('input[name="selected_variant"]');
+  document.addEventListener("DOMContentLoaded", function () {
+    // Open accordion for initially selected variant
+    const selectedBtn = document.querySelector('.accordion-button.selected');
+    if (selectedBtn) selectedBtn.click();
 
-  buttons.forEach((btn, i) => {
-    btn.classList.toggle('selected', i === index);
-  });
+    // Update hidden input when flavor is changed
+    document.querySelectorAll('input[name="flavor_option"]').forEach(radio => {
+      radio.addEventListener('change', function () {
+        const hiddenFlavorInput = document.getElementById('selected-flavor');
+        if (hiddenFlavorInput) {
+          hiddenFlavorInput.value = this.value;
+        }
+      });
+    });
 
-  contents.forEach((content, i) => {
-    content.classList.toggle('active', i === index);
-  });
-
-  // Update variant radio buttons
-  radios.forEach((radio) => {
-    radio.checked = (radio.value === variantId);
-  });
-}
-
-// On page load, open selected variant’s accordion
-document.addEventListener("DOMContentLoaded", function () {
-  const selectedBtn = document.querySelector('.accordion-button.selected');
-  if (selectedBtn) selectedBtn.click();
-
-  // Flavor radio handling
-  document.querySelectorAll('input[name^="flavor_option_"]').forEach(radio => {
-    radio.addEventListener('change', function () {
+    // Optionally: auto-select the first flavor if none is selected
+    const flavorRadios = document.querySelectorAll('input[name="flavor_option"]');
+    if (flavorRadios.length > 0 && !document.querySelector('input[name="flavor_option"]:checked')) {
+      flavorRadios[0].checked = true;
       const hiddenFlavorInput = document.getElementById('selected-flavor');
       if (hiddenFlavorInput) {
-        hiddenFlavorInput.value = this.value;
+        hiddenFlavorInput.value = flavorRadios[0].value;
       }
-    });
+    }
   });
-});
-
 </script>
+
 
