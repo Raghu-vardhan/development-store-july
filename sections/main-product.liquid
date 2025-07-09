@@ -670,6 +670,8 @@
                   {% assign variant1 = product.variants[0] %}
                   {% assign variant2 = product.variants[1] %}
                   {% assign variant3 = product.variants[2] %}
+                  {% assign variant4 = product.variants[3] %}
+                  {% assign variant5 = product.variants[4] %}
 
                   <div class="subscription-main">
                     <!-- Variant 1 -->
@@ -684,7 +686,7 @@
                               value="{{ variant1.id }}" 
                               {% if variant1.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
                             />
-                              <h3>{{ variant1.title }}</h3>
+                              <h3>{{ variant3.title }}</h3>
                             </div>
                             <div class="scripiton-price">
                               <h6>{{ variant1.price |  money }}</h6>
@@ -703,8 +705,7 @@
                                <input 
                                 type="radio" 
                                 name="flavor_option_0" 
-                                value="chocolate" 
-                                id="flavor_chocolate_0"
+                                value="{{  variant3.id }}" 
                               />
                                 <p for="flavor_chocolate_0">Chocolate</p>
                               </div>

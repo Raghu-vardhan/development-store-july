@@ -25,9 +25,10 @@
       {% endfor %}
     </div>
 
-    <!-- ✅ Navigation Arrows -->
-    <div class="swiper-button-prev"> </div>
-    <div class="swiper-button-next"> </div>
+    <!-- Navigation Arrows -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-pagination"></div>
   </div>
 
   <!-- Thumbnails -->
@@ -36,7 +37,6 @@
       <img
         src="{{ media.preview_image | image_url: width: 100 }}"
         alt="{{ media.alt | escape }}"
-        onclick="mainSwiper.slideTo({{ forloop.index0 }})"
         style="cursor:pointer; margin:5px; border:1px solid #ccc;"
         width="100"
         height="100"
@@ -44,24 +44,23 @@
       />
     {% endfor %}
   </div>
+
+  <!-- Variant Title/Options -->
+  <div class="variant-info" style="margin-top: 10px;">
+    <strong>Selected Variant:</strong> <span id="selected-variant-title">{{ product.selected_or_first_available_variant.title }}</span>
+  </div>
 </div>
 
-<!-- Swiper Styles -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
-/>
-
-<!-- Swiper Script -->
+<!-- Swiper CSS/JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 <script defer src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
-<!-- Product JSON for JS -->
+<!-- Product JSON -->
 <script>
   window.productData = {{ product | json }};
 </script>
 
-
-<!-- Swiper Initialization -->
+<!-- Swiper Logic -->
 <script>
   let mainSwiper;
 
@@ -71,6 +70,10 @@
       slidesPerView: 1,
       spaceBetween: 10,
       grabCursor: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
       navigation: {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev"
@@ -85,12 +88,20 @@
       }
     });
 
-    // Sync variant media
     const form = document.querySelector("form[action^='/cart']");
+    const variantTitleEl = document.getElementById("selected-variant-title");
+
     if (form && window.productData) {
       form.addEventListener("change", function () {
         const variantId = form.querySelector("[name='id']").value;
         const variant = window.productData.variants.find(v => v.id == variantId);
+
+        // Update text
+        if (variant && variantTitleEl) {
+          variantTitleEl.textContent = variant.title;
+        }
+
+        // Change swiper slide to match featured_media
         const mediaId = variant?.featured_media?.id;
         if (mediaId) {
           const targetSlide = document.querySelector(`.swiper-slide[data-media-id='${mediaId}']`);
@@ -102,7 +113,7 @@
       });
     }
 
-    // Thumbnail click scroll
+    // Sync thumbnails
     document.querySelectorAll(".thumbnail-images img").forEach((thumb, i) => {
       thumb.addEventListener("click", () => {
         mainSwiper.slideTo(i);
@@ -119,11 +130,6 @@
   });
 </script>
 
-
-
-
-
-<!-- Styles -->
 <style>
   .main-swiper {
     width: 100%;
