@@ -684,10 +684,8 @@
                               <input 
                               type="radio" 
                               name="selected_variant" 
-                              value="{{ variant1.id }}" 
-                              {% if variant1.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
                             />
-                              <h3>{{ variant1.title }}</h3>
+                              <h3>Single Subscription</h3>
                             </div>
                             <div class="scripiton-price">
                               <h6>{{ variant1.price |  money }}</h6>
@@ -706,10 +704,10 @@
                                <input 
                                   type="radio" 
                                   name="flavor_option" 
-                                  value="{{  variant4.id }}" 
-                                  {% if variant4.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
+                                 value="{{ variant1.id }}" 
+                              {% if variant1.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
                                 />
-                                <p for="flavor_chocolate_0">{{variant4.title}}</p>
+                                <p for="flavor_chocolate_0">{{variant1.title}}</p>
                               </div>
                               <div class="variant-sel_1">
                                 <img src="{{ block.settings.variant_imgg1 | img_url:'medium' }}" alt="image" width="55" height="100%" >
@@ -720,8 +718,8 @@
                                    <input 
                                       type="radio" 
                                       name="flavor_option" 
-                                      value="{{ variant5.id }}" 
-                                      {% if variant5.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
+                                      value="{{ variant2.id }}" 
+                                      {% if variant2.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
                                     />
                                   <p for="flavor_vanilla_1">{{variant5.title}}</p>  
                                 </div>
@@ -734,8 +732,8 @@
                                <input 
                                   type="radio" 
                                   name="flavor_option" 
-                                  value="{{ variant6.id }}" 
-                                  {% if variant6.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
+                                  value="{{ variant3.id }}" 
+                                  {% if variant3.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
                                 />
                                 <p for="flavor_orange_2" >{{variant6.title}}</p>
                               </div>
@@ -787,15 +785,13 @@
                             <input 
                               type="radio" 
                               name="selected_variant" 
-                              value="{{ variant2.id }}" 
-                              {% if variant2.id == product.selected_or_first_available_variant.id %}checked{% endif %} 
                             />
                             <h3>{{ variant2.title }}</h3>
                           </div>
                           <div class="scripiton-price">
-                            <h6>{{ variant2.price |  money_without_trailing_zeros }}</h6>
-                            {% if variant2.compare_at_price > variant2.price %}
-                              <h6><del style="color:#B8B8B8; font-weight:300">{{ variant2.compare_at_price |  money_without_trailing_zeros }}</del></h6>
+                            <h6>{{ variant4.price |  money_without_trailing_zeros }}</h6>
+                            {% if variant4.compare_at_price > variant2.price %}
+                              <h6><del style="color:#B8B8B8; font-weight:300">{{ variant4.compare_at_price |  money_without_trailing_zeros }}</del></h6>
                             {% endif %}
                           </div>
                         </div>
