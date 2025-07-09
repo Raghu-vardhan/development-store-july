@@ -687,7 +687,7 @@
                               <h3>{{ variant1.title }}</h3>
                             </div>
                             <div class="scripiton-price">
-                              <h6>{{ variant1.price |  money_without_trailing_zeros }}</h6>
+                              <h6>{{ variant1.price |  money }}</h6>
                               {% if variant1.compare_at_price > variant1.price %}
                                 <h6><del style="color:#B8B8B8; font-weight:300">{{ variant1.compare_at_price |  money_without_trailing_zeros }}</del></h6>
                               {% endif %}
@@ -722,7 +722,7 @@
                                 <p>Orange</p>
                               </div>
                               <div class="variant-sel_1">
-                                <img src="{{ block.settings.variant_imgg3 | img_url:'medium' }}" alt="image" width="55" height="100%" >
+                                <img src="{{ block.settings.variant_imgg2 | img_url:'medium' }}" alt="image" width="55" height="100%" >
                               </div>
                             </div>
                           </div>
