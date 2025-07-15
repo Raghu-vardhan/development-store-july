@@ -28,6 +28,13 @@
           "disabled": true,
           "settings": {}
         },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
         "quantity_selector": {
           "type": "quantity_selector",
           "disabled": true,
@@ -64,6 +71,7 @@
         "vendor",
         "title",
         "price",
+        "variant_picker",
         "quantity_selector",
         "buy_buttons",
         "description",
