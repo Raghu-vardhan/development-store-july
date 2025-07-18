@@ -84,6 +84,7 @@
         "video_item_MX6XqL": {
           "type": "video_item",
           "settings": {
+            "video": "shopify://files/videos/CodePen - Cards Hover Effect -_ HTML & CSS - Google Chrome 2025-07-11 17-25-34.mp4",
             "product": "subscription-box"
           }
         },
