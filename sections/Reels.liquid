@@ -1,0 +1,557 @@
+<div class="rpc-section" data-section-id="{{ section.id }}">
+  <div class="rpc-page-width">
+    <div class="rpc-header">
+      {% if section.settings.heading != blank %}
+        <h2 class="rpc-heading">{{ section.settings.heading | escape }}</h2>
+      {% endif %}
+    </div>
+
+    <!-- Swiper container -->
+    <div class="rpc-swiper-container swiper">
+      <div class="rpc-container swiper-wrapper">
+        {%- for block in section.blocks -%}
+          <div class="rpc-card swiper-slide" {{ block.shopify_attributes }}>
+            <div class="rpc-card__video-wrapper">
+              {%- if block.settings.video -%}
+                <video
+                  class="rpc-card__video"
+                  src="{{ block.settings.video.sources[1].url }}"
+                  muted
+                  loop
+                  playsinline
+                  preload="metadata"
+                  loading="lazy"
+                  {% if block.settings.product.featured_image %}
+                    poster="{{ block.settings.product.featured_image | image_url: width: 600 }}"
+                  {% endif %}
+                >
+                  Your browser does not support the video tag.
+                </video>
+              {%- else -%}
+                <div class="rpc-card__video-placeholder">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"></path></svg>
+                </div>
+              {%- endif -%}
+
+              <!-- Individual Sound Toggle -->
+              {%- if block.settings.video -%}
+                <button type="button" class="rpc-card__sound-toggle" aria-label="Toggle sound">
+                  <span class="rpc-sound-icon--on">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                  </span>
+                  <span class="rpc-sound-icon--off">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+                  </span>
+                </button>
+              {%- endif -%}
+
+              <!-- Dynamic Discount Badge -->
+              {%- assign product = block.settings.product -%}
+              {%- if product and product.compare_at_price > product.price -%}
+                {%- assign sale_percentage = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round -%}
+                <div class="rpc-card__badge">{{ sale_percentage }}% OFF</div>
+              {%- endif -%}
+
+              {%- if block.settings.product -%}
+                <a href="{{ block.settings.product.url }}" class="rpc-card__product-thumb">
+                  <img
+                    src="{{ block.settings.product.featured_image | image_url: width: 120, height: 120, crop: 'center' }}"
+                    alt="{{ block.settings.product.featured_image.alt | escape }}"
+                    loading="lazy"
+                    width="60"
+                    height="60">
+                </a>
+              {%- endif -%}
+            </div>
+
+            <div class="rpc-card__info">
+              {%- if block.settings.product -%}
+                <a href="{{ block.settings.product.url }}" class="rpc-card__title">
+                  {{ block.settings.product.title }}
+                </a>
+                <div class="rpc-card__price-wrapper">
+                  <span class="rpc-card__price">{{ product.price | money }}</span>
+                  {% if product.compare_at_price > product.price %}
+                    <s class="rpc-card__compare-price">{{ product.compare_at_price | money }}</s>
+                  {% endif %}
+                </div>
+
+                <div class="rpc-card__form">
+                  <button
+                    type="button"
+                    class="rpc-card__button js-grid-cart"
+                    data-id="{{ product.selected_or_first_available_variant.id }}"
+                    aria-label="Add {{ product.title | escape }} to cart"
+                    {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}
+                  >
+                    <span class="rpc-card__button-text">
+                      {%- if product.selected_or_first_available_variant.available -%}
+                        Add to Cart
+                      {%- else -%}
+                        Sold Out
+                      {%- endif -%}
+                    </span>
+                    <div class="rpc-card__loader"></div>
+                  </button>
+                </div>
+
+              {%- else -%}
+                <p class="rpc-card__title">Product Title</p>
+                <p class="rpc-card__price">{{ 29900 | money }}</p>
+                <button type="button" class="rpc-card__button" disabled>Add to Cart</button>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+      <!-- Swiper Navigation Buttons -->
+      <div class="rpc-swiper-button-prev swiper-button-prev"> </div>
+      <div class="rpc-swiper-button-next swiper-button-next"> </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .rpc-section {
+    padding: 40px 0;
+    background-color: #fff;
+  }
+
+  .rpc-page-width {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .rpc-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+  }
+
+  .rpc-heading {
+    font-size: 32px;
+    font-weight: 600;
+    color: #000;
+    margin: 0;
+    text-align: center;
+    flex-grow: 1;
+    padding-bottom:10px;
+  }
+  
+  .rpc-swiper-container {
+    position: relative;
+    padding: 0 5px; /* Give a little space for slides at edges */
+    margin: 0 -5px;
+  }
+
+  .rpc-card {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 260px; /* Set a fixed width for slides */
+    flex-shrink: 0; /* Prevent slides from shrinking */
+  }
+
+  .rpc-card__video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 177.77%; /* 9:16 Aspect Ratio */
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .rpc-card__video, .rpc-card__video-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .rpc-card__video-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ccc;
+  }
+
+  .rpc-card__video-placeholder svg {
+    width: 50px;
+    height: 50px;
+  }
+
+  .rpc-card__sound-toggle {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 3;
+    background: rgba(0, 0, 0, 0.4);
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    color: white;
+    transition: background-color 0.2s;
+  }
+  .rpc-card__sound-toggle:hover {
+    background: rgba(0, 0, 0, 0.6);
+  }
+  .rpc-card__sound-toggle svg {
+    width: 18px;
+    height: 18px;
+  }
+  .rpc-card__sound-toggle .rpc-sound-icon--on { display: none; }
+  .rpc-card__sound-toggle .rpc-sound-icon--off { display: block; }
+  .rpc-card__sound-toggle.is-unmuted .rpc-sound-icon--on { display: block; }
+  .rpc-card__sound-toggle.is-unmuted .rpc-sound-icon--off { display: none; }
+
+
+  .rpc-card__badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: #ff0000;
+    color: #fff;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 4px;
+    z-index: 2;
+  }
+
+  .rpc-card__product-thumb {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    width: 60px;
+    height: 60px;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .rpc-card__product-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .rpc-card__info {
+    padding-top: 15px;
+  }
+
+  .rpc-card__title {
+    font-size: 14px;
+    font-weight: 400;
+    color: #000;
+    text-decoration: none;
+    margin: 0 0 5px 0;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .rpc-card__price-wrapper {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .rpc-card__price {
+    font-size: 14px;
+    font-weight: 600;
+    color: #000;
+  }
+
+  .rpc-card__compare-price {
+    font-size: 13px;
+    color: #777;
+    text-decoration: line-through;
+  }
+
+  .rpc-card__button {
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+    border: 1px solid #000;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s, color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .rpc-card__button:hover:not(:disabled) {
+    background-color: #fff;
+    color: #000;
+  }
+  
+  .rpc-card__button:disabled {
+    cursor: not-allowed;
+    background-color: #ccc;
+    border-color: #ccc;
+  }
+
+  .rpc-card__loader {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: rpc-spin 0.8s linear infinite;
+    display: none;
+  }
+
+  .rpc-card__button:hover:not(:disabled) .rpc-card__loader {
+    border-color: rgba(0, 0, 0, 0.4);
+    border-top-color: #000;
+  }
+
+  .rpc-card__button.is-loading .rpc-card__button-text {
+    display: none;
+  }
+
+  .rpc-card__button.is-loading .rpc-card__loader {
+    display: block;
+  }
+
+  @keyframes rpc-spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  /* Swiper Navigation Buttons */
+  .rpc-swiper-button-prev,
+  .rpc-swiper-button-next {
+    position: absolute;
+    top: 45%; /* Position relative to video height */
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    color: #000;
+    transition: background-color 0.2s;
+  }
+  .rpc-swiper-button-prev:hover,
+  .rpc-swiper-button-next:hover {
+    background-color: #fff;
+  }
+  .rpc-swiper-button-prev:after,
+  .rpc-swiper-button-next:after {
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .rpc-swiper-button-prev {
+    left: 15px;
+  }
+  .rpc-swiper-button-next {
+    right: 15px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .rpc-heading {
+      font-size: 20px;
+    }
+    .rpc-card {
+      width: 100%; /* Smaller cards on mobile */
+    }
+    .rpc-page-width {
+      padding: 0 15px;
+    }
+    .rpc-swiper-button-prev,
+    .rpc-swiper-button-next {
+     
+    }
+  }
+</style>
+
+<script>
+  class RealPeopleVideoCarousel {
+    constructor(section) {
+      this.section = section;
+      this.container = this.section.querySelector('.rpc-swiper-container');
+      if (!this.container || typeof Swiper === 'undefined') return;
+
+      this.cards = this.section.querySelectorAll('.rpc-card');
+      this.activeVideo = null;
+      this.swiper = null;
+      
+      this.init();
+    }
+
+    init() {
+      this.initSwiper();
+      this.initVideoControls();
+      this.initCartButtons();
+    }
+
+    initSwiper() {
+      this.swiper = new Swiper(this.container, {
+        slidesPerView: 'auto',
+        spaceBetween: 15,
+        navigation: {
+          nextEl: this.section.querySelector('.rpc-swiper-button-next'),
+          prevEl: this.section.querySelector('.rpc-swiper-button-prev'),
+        },
+        breakpoints: {
+          769: {
+            spaceBetween: 20,
+          }
+        },
+      });
+    }
+
+    initVideoControls() {
+      this.cards.forEach(card => {
+        const videoWrapper = card.querySelector('.rpc-card__video-wrapper');
+        const video = card.querySelector('video');
+        const soundToggle = card.querySelector('.rpc-card__sound-toggle');
+        
+        if (!video) return;
+
+        videoWrapper.addEventListener('mouseenter', () => this.playVideo(video));
+        videoWrapper.addEventListener('mouseleave', () => this.pauseVideo(video));
+        
+        if (soundToggle) {
+          soundToggle.addEventListener('click', (event) => {
+            event.stopPropagation();
+            const isMuted = !video.muted;
+            video.muted = isMuted;
+            soundToggle.classList.toggle('is-unmuted', !isMuted);
+            soundToggle.setAttribute('aria-label', isMuted ? 'Unmute' : 'Mute');
+          });
+        }
+      });
+    }
+
+    initCartButtons() {
+      this.cards.forEach(card => {
+        const addToCartButton = card.querySelector('.js-grid-cart');
+        if (addToCartButton) {
+          addToCartButton.addEventListener('click', () => {
+            if (addToCartButton.hasAttribute('disabled')) return;
+            addToCartButton.classList.add('is-loading');
+          });
+        }
+      });
+    }
+
+    playVideo(video) {
+      if (this.activeVideo && this.activeVideo !== video) {
+        this.activeVideo.pause();
+      }
+      video.play().catch(error => {
+        if (error.name !== "AbortError") console.error("Video play failed:", error);
+      });
+      this.activeVideo = video;
+    }
+
+    pauseVideo(video) {
+      video.pause();
+      if (this.activeVideo === video) {
+        this.activeVideo = null;
+      }
+    }
+  }
+
+  // --- Main initialization logic ---
+
+  const sectionId = '{{ section.id }}';
+  const sectionSelector = `.rpc-section[data-section-id="${sectionId}"]`;
+
+  const initVideoCarousel = () => {
+    const sectionElement = document.querySelector(sectionSelector);
+    if (sectionElement) {
+      new RealPeopleVideoCarousel(sectionElement);
+    }
+  }
+  
+  // Listen for a global cart update event to remove the loading state.
+  // 'cart:updated' is a common event name used by themes like Dawn.
+  // If this doesn't work, your theme might use a different custom event.
+  document.addEventListener('cart:updated', () => {
+    const sectionElement = document.querySelector(sectionSelector);
+    if (sectionElement) {
+      sectionElement.querySelectorAll('.rpc-card__button.is-loading').forEach(button => {
+        button.classList.remove('is-loading');
+      });
+    }
+  });
+  
+  document.addEventListener('DOMContentLoaded', initVideoCarousel);
+  document.addEventListener('shopify:section:load', (event) => {
+    if (event.target.matches(sectionSelector)) {
+      initVideoCarousel();
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Video Carousel",
+  "tag": "section",
+  "class": "shopify-section--video-carousel",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "REAL PEOPLE REAL RESULT"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video_item",
+      "name": "Video Item",
+      "limit": 12,
+      "settings": [
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video",
+          "info": "Upload a 9:16 aspect ratio video (like a Reel or TikTok)."
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video Carousel",
+      "blocks": [
+        { "type": "video_item" },
+        { "type": "video_item" },
+        { "type": "video_item" },
+        { "type": "video_item" },
+        { "type": "video_item" }
+      ]
+    }
+  ]
+}
+{% endschema %}x`
