@@ -446,17 +446,46 @@
       });
     }
 
-    initCartButtons() {
-      this.cards.forEach(card => {
-        const addToCartButton = card.querySelector('.js-grid-cart');
-        if (addToCartButton) {
-          addToCartButton.addEventListener('click', () => {
-            if (addToCartButton.hasAttribute('disabled')) return;
-            addToCartButton.classList.add('is-loading');
+   initCartButtons() {
+  this.cards.forEach(card => {
+    const addToCartButton = card.querySelector('.js-grid-cart');
+
+    if (addToCartButton) {
+      addToCartButton.addEventListener('click', async () => {
+        if (addToCartButton.hasAttribute('disabled')) return;
+
+        const variantId = addToCartButton.dataset.id;
+        if (!variantId) return;
+
+        addToCartButton.classList.add('is-loading');
+
+        try {
+          const res = await fetch('/cart/add.js', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              id: variantId,
+              quantity: 1
+            })
           });
+
+          if (!res.ok) throw new Error('Add to cart failed');
+
+          // Optional: trigger cart update event
+          document.dispatchEvent(new CustomEvent('cart:updated'));
+
+        } catch (error) {
+          console.error(error);
+          alert('Failed to add to cart');
+        } finally {
+          addToCartButton.classList.remove('is-loading');
         }
       });
     }
+  });
+}
+document.dispatchEvent(new CustomEvent('cart:open'));
+
 
     playVideo(video) {
       if (this.activeVideo && this.activeVideo !== video) {
