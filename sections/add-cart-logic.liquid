@@ -1,0 +1,101 @@
+
+{% assign product = all_products['rakhi-glow-gift-box-skincare-hamper-for-sister-brother'] %}
+{% if product %}
+<div id="free-greeting-wrapper">
+
+  <product-form class="product-form" data-section-id="{{ section.id }}">
+    {%- form 'product',
+      product,
+      id: 'greeting-product-form',
+      class: 'form',
+      novalidate: 'novalidate',
+      data-type: 'add-to-cart-form'
+    -%}
+
+      <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+
+      <!-- Greeting Card Option -->
+      <label>Would you like to add a free greeting card?</label><br>
+      <label><input type="radio" name="properties[Add Greeting Card]" value="Yes"> Yes</label>
+      <label><input type="radio" name="properties[Add Greeting Card]" value="No" checked> No</label>
+
+      <!-- Custom Message (only if Yes) -->
+      <div id="greeting-message-field" style="display: none; margin-top: 10px;">
+        <label for="greeting-message">Your message:</label>
+        <input type="text" id="greeting-message" name="properties[Greeting Card Message]" placeholder="Type your message">
+      </div>
+
+      <br/>
+
+      <div class="product-form__buttons" style="margin-top: 16px; max-width:100%;">
+        <button
+          type="submit"
+          name="add"
+          class="product-form__submit button"
+        >
+          <span>Buy Now</span>
+          {%- render 'loading-spinner' -%}
+        </button>
+      </div>
+    {%- endform -%}
+  </product-form>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const yesOption = document.querySelector('#free-greeting-wrapper input[value="Yes"]');
+  const noOption = document.querySelector('#free-greeting-wrapper input[value="No"]');
+  const messageField = document.getElementById('greeting-message-field');
+
+  // This script's only job is to show or hide the message field.
+  // The cart functionality is now handled by the <product-form> element.
+  if (yesOption && noOption && messageField) {
+    yesOption.addEventListener('change', function () {
+      if (this.checked) {
+        messageField.style.display = 'block';
+      }
+    });
+
+    noOption.addEventListener('change', function () {
+      if (this.checked) {
+        messageField.style.display = 'none';
+      }
+    });
+  }
+});
+</script>
+
+<style>
+  .product-form{
+    color:#000;
+  }
+#free-greeting-wrapper {
+  margin-top: 20px;
+}
+#free-greeting-wrapper .field {
+  margin-bottom: 12px;
+}
+#free-greeting-wrapper input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+/* You can likely remove your custom .buttons style and let the theme's default styles take over */
+#free-greeting-wrapper .product-form__submit {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  width:100%;
+}
+#free-greeting-wrapper .product-form__submit:hover {
+  opacity: 0.9;
+}
+</style>
+{% else %}
+<p>Please enter a valid product handle in the section settings.</p>
+{% endif %}
